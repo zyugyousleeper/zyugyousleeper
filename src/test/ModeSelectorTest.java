@@ -1,8 +1,5 @@
 package test;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
 import model.AbstractMode;
 import ui.ModeSelector;
 
@@ -10,12 +7,19 @@ class ModeSelectorTest {
 	public static void main(String[] args) {
 		ModeSelector frame = new ModeSelector();
 		
-		frame.addMode(new AbstractMode() {
+		AbstractMode mode = new AbstractMode(){
 			@Override
 			public void run() {
-				System.out.println("hello");
+				// TODO Auto-generated method stub
+				
 			}
-		});
+		};
+
+		frame.addMode(mode);
+		frame.addMode(mode);
+		frame.addMode(mode);
+		frame.addMode(mode);
+		frame.addMode(mode);
 		
 		frame.setVisible(true);
 	}

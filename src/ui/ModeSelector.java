@@ -27,15 +27,19 @@ public class ModeSelector extends JFrame {
 		contentPane.setLayout(new GridLayout(2,3));
 	}
 	
-	public void addMode(AbstractMode mode) {
-		this.modes.add(mode);
-		
+	public void refresh() {
+		contentPane.removeAll();
 		Iterator<AbstractMode> i = modes.iterator();
 		while(i.hasNext()){
 			JButton bufButton = new JButton();
 			bufButton.setText((i.next()).getText());
 			contentPane.add(bufButton);
 		}
+	}
+	
+	public void addMode(AbstractMode mode) {
+		this.modes.add(mode);
+		refresh();
 	}
 	
 }

@@ -16,5 +16,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/pi4j/pi4j-gpio-extension-javadoc.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/pi4j/pi4j-gpio-extension-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/pi4j/pi4j-gpio-extension.jar"/>
+	<classpathentry kind="lib" path="lib/remotevm/remotevmlauncher-agent-1.0-20140103.103618-5.jar"/>
+	<classpathentry kind="lib" path="lib/remotevm/remotevmlauncher-client-1.0-20140103.103630-5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

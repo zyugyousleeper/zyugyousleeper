@@ -1,23 +1,21 @@
 package ui;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.AbstractMode;
+
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class ModeSelector extends JFrame {
 
 	private JPanel contentPane;
+	private ArrayList<AbstractMode> modes = new ArrayList<>();
 
-	public static void main(String[] args) {
-		JFrame frame = new ModeSelector();
-		frame.add(new JButton());
-		frame.setVisible(true);
-	}
-
-	
 	/**
 	 * Create the frame.
 	 */
@@ -26,8 +24,23 @@ public class ModeSelector extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(new GridLayout(2,3));
 	}
-
+	
+	public void refresh() {
+		contentPane.removeAll();
+		Iterator<AbstractMode> i = modes.iterator();
+		while(i.hasNext()){
+			JButton bufButton = new JButton();
+			bufButton.setText((i.next()).getText());
+			contentPane.add(bufButton);
+		}
+	}
+	
+	public void addMode(AbstractMode mode) {
+		this.modes.add(mode);
+		refresh();
+	}
+	
 }

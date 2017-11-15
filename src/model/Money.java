@@ -32,4 +32,8 @@ public class Money {
 	public int getMoney() {
 		return this.money;
 	}
+	
+	public HashMap<Integer, Integer> getMoneyKinds() {
+		return this.moneyKinds;
+	}
 }

@@ -20,7 +20,12 @@ public class Money {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void addMoney(int kind,int amount) throws Exception {
+	public void addMoney(int kind,int numberOfCoins) {
+		this.moneyKinds.put(kind, numberOfCoins);
+		this.money += kind*numberOfCoins;
+	}
+	
+	public void addMoneyFromAmount(int kind,int amount) throws Exception {
 		if(amount % kind == 0) {
 			this.moneyKinds.put(kind, amount/kind);
 			this.money += amount;

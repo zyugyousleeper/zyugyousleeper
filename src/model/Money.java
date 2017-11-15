@@ -1,5 +1,7 @@
 package model;
 
+import java.util.HashMap;
+
 public class Money {
 	public static final int ONE_YEN = 1;
 	public static final int FIVE_YEN = 5;
@@ -12,13 +14,19 @@ public class Money {
 	public static final int FIVETHOUSAND_YEN = 5000;
 	
 	private int money = 0;
-	
+	HashMap<Integer, Integer> moneyKinds = new HashMap<>();
+			
 	public Money() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Money(int money) {
-		this.money = money;
+	public void addMoney(int kind,int amount) throws Exception {
+		if(amount % kind == 0) {
+			this.moneyKinds.put(kind, amount/kind);
+			this.money += amount;
+		}else {
+			throw new Exception("kingakuto okaneno syuruiga awanai");
+		}
 	}
 	
 	public int getMoney() {

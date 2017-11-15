@@ -1,7 +1,7 @@
 package test;
 
 import model.AbstractMode;
-import ui.ModeSelector;
+import view.ModeSelector;
 
 class ModeSelectorTest {
 	public static void main(String[] args) {

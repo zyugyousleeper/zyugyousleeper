@@ -3,8 +3,6 @@ package model;
 public abstract class Item {
 	private String text = "Text";
 	
-	abstract public void run();
-	
 	public String getText() {
 		return text;
 	}

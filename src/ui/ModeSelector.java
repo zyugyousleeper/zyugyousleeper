@@ -15,6 +15,7 @@ public class ModeSelector extends JFrame {
 
 	private JPanel contentPane;
 	private ArrayList<AbstractMode> modes = new ArrayList<>();
+
 	/**
 	 * Create the frame.
 	 */

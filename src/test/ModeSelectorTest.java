@@ -3,7 +3,7 @@ package test;
 import model.AbstractMode;
 import ui.ModeSelector;
 
-class ModeSelectorTest {
+public class ModeSelectorTest {
 	public static void main(String[] args) {
 		ModeSelector frame = new ModeSelector();
 		

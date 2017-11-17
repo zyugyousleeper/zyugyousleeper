@@ -5,21 +5,21 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.AbstractMode;
+import model.Item;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ModeSelector extends JFrame {
+public class Container<T extends Item> extends JFrame {
 
 	private JPanel contentPane;
-	private ArrayList<AbstractMode> modes = new ArrayList<>();
+	private ArrayList<T> modes = new ArrayList<>();
 
 	/**
 	 * Create the frame.
 	 */
-	public ModeSelector() {
+	public Container() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -30,7 +30,7 @@ public class ModeSelector extends JFrame {
 	
 	public void refresh() {
 		contentPane.removeAll();
-		Iterator<AbstractMode> i = modes.iterator();
+		Iterator<T> i = modes.iterator();
 		while(i.hasNext()){
 			JButton bufButton = new JButton();
 			bufButton.setText((i.next()).getText());
@@ -38,7 +38,7 @@ public class ModeSelector extends JFrame {
 		}
 	}
 	
-	public void addMode(AbstractMode mode) {
+	public void addMode(T mode) {
 		this.modes.add(mode);
 		refresh();
 	}

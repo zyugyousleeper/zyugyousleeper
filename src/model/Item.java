@@ -1,9 +1,7 @@
 package model;
 
-public abstract class AbstractMode {
+public class Item {
 	private String text = "Text";
-	
-	abstract public void run();
 	
 	public String getText() {
 		return text;

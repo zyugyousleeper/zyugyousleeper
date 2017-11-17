@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Item {
+public class Item {
 	private String text = "Text";
 	
 	public String getText() {

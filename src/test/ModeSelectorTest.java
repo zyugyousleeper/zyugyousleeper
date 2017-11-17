@@ -1,19 +1,13 @@
 package test;
 
 import model.Item;
-import ui.ModeSelector;
+import ui.Container;
 
 public class ModeSelectorTest {
 	public static void main(String[] args) {
-		ModeSelector<Item> frame = new ModeSelector<>();
+		Container<Item> frame = new Container<>();
 		
-		Item mode = new Item(){
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				
-			}
-		};
+		Item mode = new Item();
 
 		frame.addMode(mode);
 		frame.addMode(mode);

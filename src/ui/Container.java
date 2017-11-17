@@ -11,7 +11,7 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ModeSelector<T extends Item> extends JFrame {
+public class Container<T extends Item> extends JFrame {
 
 	private JPanel contentPane;
 	private ArrayList<T> modes = new ArrayList<>();
@@ -19,7 +19,7 @@ public class ModeSelector<T extends Item> extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ModeSelector() {
+	public Container() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

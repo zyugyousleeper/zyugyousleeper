@@ -11,10 +11,10 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ModeSelector extends JFrame {
+public class ModeSelector<T extends Item> extends JFrame {
 
 	private JPanel contentPane;
-	private ArrayList<Item> modes = new ArrayList<>();
+	private ArrayList<T> modes = new ArrayList<>();
 
 	/**
 	 * Create the frame.
@@ -30,7 +30,7 @@ public class ModeSelector extends JFrame {
 	
 	public void refresh() {
 		contentPane.removeAll();
-		Iterator<Item> i = modes.iterator();
+		Iterator<T> i = modes.iterator();
 		while(i.hasNext()){
 			JButton bufButton = new JButton();
 			bufButton.setText((i.next()).getText());
@@ -38,7 +38,7 @@ public class ModeSelector extends JFrame {
 		}
 	}
 	
-	public void addMode(Item mode) {
+	public void addMode(T mode) {
 		this.modes.add(mode);
 		refresh();
 	}

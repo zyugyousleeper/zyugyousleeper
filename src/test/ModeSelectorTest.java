@@ -5,7 +5,7 @@ import ui.ModeSelector;
 
 public class ModeSelectorTest {
 	public static void main(String[] args) {
-		ModeSelector frame = new ModeSelector();
+		ModeSelector<Item> frame = new ModeSelector<>();
 		
 		Item mode = new Item(){
 			@Override

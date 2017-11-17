@@ -1,13 +1,13 @@
 package test;
 
-import model.AbstractMode;
+import model.Item;
 import ui.ModeSelector;
 
 public class ModeSelectorTest {
 	public static void main(String[] args) {
 		ModeSelector frame = new ModeSelector();
 		
-		AbstractMode mode = new AbstractMode(){
+		Item mode = new Item(){
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub

@@ -1,6 +1,6 @@
 package model;
 
-public abstract class AbstractMode {
+public abstract class Item {
 	private String text = "Text";
 	
 	abstract public void run();

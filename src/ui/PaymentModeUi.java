@@ -35,6 +35,7 @@ public class PaymentModeUi extends JFrame{
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				delete();
 			}
 		});
 		panelN.add(cancelButton, BorderLayout.EAST);
@@ -102,5 +103,9 @@ public class PaymentModeUi extends JFrame{
 	public void update() {
 		remainingMoneyLabel.setText(String.valueOf(remainingMoney.getMoney()));
 		chargeMoneyLabel.setText(String.valueOf(chargeMoney.getMoney()));
+	}
+	
+	public void delete() {
+		this.delete();
 	}
 }

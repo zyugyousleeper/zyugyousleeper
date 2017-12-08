@@ -20,8 +20,8 @@ public class PaymentModeUi extends JFrame{
 	private Money chargeMoney;
 	
 	private JLabel ableMoneyKinds = new JLabel("無し");
-	private JLabel remainingCoinLabel = new JLabel("0");
-	private JLabel chargeCoinLabel = new JLabel("0");
+	private JLabel remainingMoneyLabel = new JLabel("0");
+	private JLabel chargeMoneyLabel = new JLabel("0");
 	
 	public PaymentModeUi() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,16 +91,16 @@ public class PaymentModeUi extends JFrame{
 		JLabel label3 = new JLabel("残額：");
 		panelSC.add(label3);
 		
-		panelSC.add(remainingCoinLabel);
+		panelSC.add(remainingMoneyLabel);
 		
 		JLabel label4 = new JLabel("　　チャージ額：");
 		panelSC.add(label4);
 		
-		panelSC.add(chargeCoinLabel);
+		panelSC.add(chargeMoneyLabel);
 	}
 	
 	public void update() {
-		remainingCoinLabel.setText(String.valueOf(remainingMoney.getMoney()));
-		chargeCoinLabel.setText(String.valueOf(chargeMoney.getMoney()));
+		remainingMoneyLabel.setText(String.valueOf(remainingMoney.getMoney()));
+		chargeMoneyLabel.setText(String.valueOf(chargeMoney.getMoney()));
 	}
 }

@@ -7,12 +7,22 @@ import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import model.Money;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 
 public class PaymentModeUi extends JFrame{
+	private Money remainingMoney;
+	private Money chargeMoney;
+	
+	private JLabel ableMoneyKinds = new JLabel("無し");
+	private JLabel remainingCoinLabel = new JLabel("0");
+	private JLabel chargeCoinLabel = new JLabel("0");
+	
 	public PaymentModeUi() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -49,6 +59,9 @@ public class PaymentModeUi extends JFrame{
 		chargeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//TODO:チャージをリメインに加算する
+				//TODO:加算した後のチャージを空にする
+				update();
 			}
 		});
 		panelSS.add(chargeButton);
@@ -70,7 +83,6 @@ public class PaymentModeUi extends JFrame{
 		JLabel label5 = new JLabel("投入できる貨幣：");
 		panelSNC.add(label5);
 		
-		JLabel ableMoneyKinds = new JLabel("無し");
 		panelSNC.add(ableMoneyKinds);
 		
 		JPanel panelSC = new JPanel();
@@ -79,13 +91,16 @@ public class PaymentModeUi extends JFrame{
 		JLabel label3 = new JLabel("残額：");
 		panelSC.add(label3);
 		
-		JLabel remainingCoinLabel = new JLabel("0");
 		panelSC.add(remainingCoinLabel);
 		
 		JLabel label4 = new JLabel("　　チャージ額：");
 		panelSC.add(label4);
 		
-		JLabel chargeCoinLabel = new JLabel("0");
 		panelSC.add(chargeCoinLabel);
+	}
+	
+	public void update() {
+		remainingCoinLabel.setText(String.valueOf(remainingMoney.getMoney()));
+		chargeCoinLabel.setText(String.valueOf(chargeMoney.getMoney()));
 	}
 }

@@ -8,6 +8,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 
 public class PaymentModeUi extends JFrame{
@@ -20,6 +22,11 @@ public class PaymentModeUi extends JFrame{
 		panelN.setLayout(new BorderLayout(0, 0));
 		
 		JButton cancelButton = new JButton("キャンセル");
+		cancelButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panelN.add(cancelButton, BorderLayout.EAST);
 		
 		JPanel panelC = new JPanel();
@@ -39,6 +46,11 @@ public class PaymentModeUi extends JFrame{
 		panelSS.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton chargeButton = new JButton("チャージ！！");
+		chargeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panelSS.add(chargeButton);
 		
 		JPanel panelSN = new JPanel();

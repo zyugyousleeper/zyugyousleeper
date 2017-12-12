@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Money {
 	public static final int ONE_YEN = 1;
@@ -31,6 +32,18 @@ public class Money {
 			this.money += amount;
 		}else {
 			throw new Exception("kingakuto okaneno syuruiga awanai");
+		}
+	}
+	
+	public void plusMoney(Money money) {
+		this.money += money.money;
+		for(Map.Entry<Integer,Integer> map : money.moneyKinds.entrySet()) {
+			Integer buf = this.moneyKinds.get(map.getKey()); 
+			if(buf != null) {
+				this.moneyKinds.put(map.getKey(), map.getValue()+buf);
+			}else {
+				this.moneyKinds.put(map.getKey(), map.getValue());
+			}
 		}
 	}
 	

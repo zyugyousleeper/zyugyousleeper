@@ -23,7 +23,7 @@ public class PaymentModeUi extends JPanel{
 	private JLabel remainingMoneyLabel = new JLabel("0");
 	private JLabel chargeMoneyLabel = new JLabel("0");
 	
-	public PaymentModeUi() {
+	public PaymentModeUi(Money remainingMoney_in, Money chargeMoney_in) {
 		JPanel panelN = new JPanel();
 		this.add(panelN, BorderLayout.NORTH);
 		panelN.setLayout(new BorderLayout(0, 0));
@@ -95,6 +95,10 @@ public class PaymentModeUi extends JPanel{
 		panelSC.add(label4);
 		
 		panelSC.add(chargeMoneyLabel);
+		
+		remainingMoney = remainingMoney_in;
+		chargeMoney = chargeMoney_in;
+		update();
 	}
 	
 	public void update() {

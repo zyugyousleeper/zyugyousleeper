@@ -2,12 +2,15 @@ package test;
 
 import javax.swing.JFrame;
 
+import model.Money;
 import ui.PaymentModeUi;
 
 public class PaymentModeUiTest {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		frame.add(new PaymentModeUi());
+		Money remainingMoney = new Money();
+		Money chargeMoney = new Money();
+		frame.add(new PaymentModeUi(remainingMoney, chargeMoney));
 		frame.setVisible(true);
 		//paymentModeUi.update();
 	}

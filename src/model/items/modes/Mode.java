@@ -1,5 +1,7 @@
 package model.items.modes;
 
-public class Mode {
+import model.items.Item;
+
+public class Mode extends Item{
 
 }

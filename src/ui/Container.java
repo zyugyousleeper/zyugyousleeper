@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.Item;
+import model.items.Item;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;

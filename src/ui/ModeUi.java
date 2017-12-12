@@ -7,15 +7,15 @@ import javax.swing.SwingConstants;
 import javax.swing.JToolBar;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.Panel;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.swing.JButton;
 
 public class ModeUi extends JFrame {
 	public ModeUi() {
 		getContentPane().setLayout(new BorderLayout(0, 0));
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.YELLOW);
-		getContentPane().add(panel, BorderLayout.CENTER);
 		
 		JLabel fractionLabel = new JLabel("New label");
 		getContentPane().add(fractionLabel, BorderLayout.SOUTH);
@@ -27,6 +27,35 @@ public class ModeUi extends JFrame {
 		
 		JButton cancelButton = new JButton("New button");
 		buttonPanel.add(cancelButton, BorderLayout.EAST);
+		
+		refresh();
 	}
 
+	ArrayList<JPanel> panels = new ArrayList<>();
+	int nowPanel = 0;
+	
+	public void refresh() {
+		Iterator<JPanel> i = panels.iterator();
+		while(i.hasNext()){
+			JPanel bufPanel = i.next();
+			bufPanel.setVisible(false);
+		}
+		if(0<=nowPanel && nowPanel<panels.size()) {
+			panels.get(nowPanel).setVisible(true);	
+		}
+	}
+	
+	public void next() {
+		nowPanel++;
+		refresh();
+	}
+	
+	public void back() {
+		nowPanel--;
+		refresh();
+	}
+	
+	public void addPanel(JPanel panel) {
+		this.panels.add(panel);
+	}
 }

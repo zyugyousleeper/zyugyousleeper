@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import model.items.Item;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -33,7 +35,9 @@ public class Container<T extends Item> extends JFrame {
 		Iterator<T> i = modes.iterator();
 		while(i.hasNext()){
 			JButton bufButton = new JButton();
-			bufButton.setText((i.next()).getText());
+			T bufItem = i.next();
+			bufButton.addActionListener(e -> bufItem.onClick());
+			bufButton.setText(bufItem.getText());
 			contentPane.add(bufButton);
 		}
 	}

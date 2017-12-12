@@ -41,4 +41,9 @@ public class Money {
 	public HashMap<Integer, Integer> getMoneyKinds() {
 		return this.moneyKinds;
 	}
+	
+	public void reset() {
+		this.money = 0;
+		this.moneyKinds.clear();
+	}
 }

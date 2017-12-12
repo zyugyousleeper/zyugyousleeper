@@ -24,21 +24,10 @@ public class PaymentModeUi extends JPanel{
 	private JLabel chargeMoneyLabel = new JLabel("0");
 	
 	public PaymentModeUi(Money remainingMoney_in, Money chargeMoney_in) {
-		JPanel panelN = new JPanel();
-		this.add(panelN, BorderLayout.NORTH);
-		panelN.setLayout(new BorderLayout(0, 0));
-		
-		JButton cancelButton = new JButton("キャンセル");
-		cancelButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				delete();
-			}
-		});
-		panelN.add(cancelButton, BorderLayout.EAST);
+		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelC = new JPanel();
-		this.add(panelC, BorderLayout.CENTER);
+		this.add(panelC, BorderLayout.NORTH);
 		panelC.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel label1 = new JLabel("入金");
@@ -46,7 +35,7 @@ public class PaymentModeUi extends JPanel{
 		label1.setFont(new Font("Dialog", Font.BOLD, 30));
 		
 		JPanel panelS = new JPanel();
-		this.add(panelS, BorderLayout.SOUTH);
+		this.add(panelS);
 		panelS.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelSS = new JPanel();
@@ -104,9 +93,5 @@ public class PaymentModeUi extends JPanel{
 	public void update() {
 		remainingMoneyLabel.setText(String.valueOf(remainingMoney.getMoney()));
 		chargeMoneyLabel.setText(String.valueOf(chargeMoney.getMoney()));
-	}
-	
-	public void delete() {
-		this.delete();
 	}
 }

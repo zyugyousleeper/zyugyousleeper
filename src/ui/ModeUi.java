@@ -17,10 +17,14 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 
 public class ModeUi extends JFrame {
+	JLabel fractionLabel;
+	ArrayList<JPanel> panels = new ArrayList<>();
+	int nowPanel = 0;
+	
 	public ModeUi() {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		JLabel fractionLabel = new JLabel("New label");
+		fractionLabel = new JLabel("New label");
 		getContentPane().add(fractionLabel, BorderLayout.SOUTH);
 		fractionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -55,9 +59,6 @@ public class ModeUi extends JFrame {
 		
 		refresh();
 	}
-
-	ArrayList<JPanel> panels = new ArrayList<>();
-	int nowPanel = 0;
 	
 	public void refresh() {
 		Iterator<JPanel> i = panels.iterator();
@@ -70,6 +71,8 @@ public class ModeUi extends JFrame {
 			bufPanel.setVisible(true);
 			getContentPane().add(bufPanel, BorderLayout.CENTER);
 		}
+		
+		fractionLabel.setText(String.valueOf(nowPanel+1) + "/" + String.valueOf(panels.size()));
 	}
 	
 	public void next() {

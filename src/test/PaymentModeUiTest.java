@@ -10,8 +10,10 @@ public class PaymentModeUiTest {
 		JFrame frame = new JFrame();
 		Money remainingMoney = new Money();
 		Money chargeMoney = new Money();
-		frame.add(new PaymentModeUi(remainingMoney, chargeMoney));
+		PaymentModeUi paymentModeUi = new PaymentModeUi(remainingMoney, chargeMoney);
+		frame.add(paymentModeUi);
 		frame.setVisible(true);
-		//paymentModeUi.update();
+		remainingMoney.addMoney(Money.TEN_YEN, 50);
+		chargeMoney.addMoney(Money.HUNDRED_YEN, 15);
 	}
 }

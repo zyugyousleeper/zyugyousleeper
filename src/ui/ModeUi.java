@@ -41,7 +41,9 @@ public class ModeUi extends JFrame {
 			bufPanel.setVisible(false);
 		}
 		if(0<=nowPanel && nowPanel<panels.size()) {
-			panels.get(nowPanel).setVisible(true);	
+			JPanel bufPanel = panels.get(nowPanel);
+			bufPanel.setVisible(true);
+			getContentPane().add(bufPanel, BorderLayout.CENTER);
 		}
 	}
 	
@@ -57,5 +59,6 @@ public class ModeUi extends JFrame {
 	
 	public void addPanel(JPanel panel) {
 		this.panels.add(panel);
+		refresh();
 	}
 }

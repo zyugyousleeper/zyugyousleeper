@@ -10,11 +10,11 @@ public class ContainerTest {
 		Item mode = new Item();
 		mode.setText("hello");
 
-		frame.addMode(mode);
-		frame.addMode(mode);
-		frame.addMode(mode);
-		frame.addMode(mode);
-		frame.addMode(mode);
+		frame.addItem(mode);
+		frame.addItem(mode);
+		frame.addItem(mode);
+		frame.addItem(mode);
+		frame.addItem(mode);
 		
 		frame.setVisible(true);
 	}

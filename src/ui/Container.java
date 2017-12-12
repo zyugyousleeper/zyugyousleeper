@@ -38,7 +38,7 @@ public class Container<T extends Item> extends JFrame {
 		}
 	}
 	
-	public void addMode(T mode) {
+	public void addItem(T mode) {
 		this.modes.add(mode);
 		refresh();
 	}

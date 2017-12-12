@@ -8,10 +8,13 @@ import javax.swing.JToolBar;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JButton;
+import java.awt.GridLayout;
 
 public class ModeUi extends JFrame {
 	public ModeUi() {
@@ -23,10 +26,32 @@ public class ModeUi extends JFrame {
 		
 		JPanel buttonPanel = new JPanel();
 		getContentPane().add(buttonPanel, BorderLayout.NORTH);
-		buttonPanel.setLayout(new BorderLayout(0, 0));
+		buttonPanel.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JButton cancelButton = new JButton("New button");
-		buttonPanel.add(cancelButton, BorderLayout.EAST);
+		JButton nextButton = new JButton("next");
+		nextButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				next();
+			}
+		});
+		buttonPanel.add(nextButton);
+		
+		JButton backButton = new JButton("back");
+		backButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				back();
+			}
+		});
+		buttonPanel.add(backButton);
+		
+		JButton cancelButton = new JButton("cancel");
+		buttonPanel.add(cancelButton);
 		
 		refresh();
 	}

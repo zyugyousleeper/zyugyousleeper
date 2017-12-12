@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 
-public class PaymentModeUi extends JFrame{
+public class PaymentModeUi extends JPanel{
 	private Money remainingMoney;
 	private Money chargeMoney;
 	
@@ -24,11 +24,8 @@ public class PaymentModeUi extends JFrame{
 	private JLabel chargeMoneyLabel = new JLabel("0");
 	
 	public PaymentModeUi() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		
 		JPanel panelN = new JPanel();
-		getContentPane().add(panelN, BorderLayout.NORTH);
+		this.add(panelN, BorderLayout.NORTH);
 		panelN.setLayout(new BorderLayout(0, 0));
 		
 		JButton cancelButton = new JButton("キャンセル");
@@ -41,7 +38,7 @@ public class PaymentModeUi extends JFrame{
 		panelN.add(cancelButton, BorderLayout.EAST);
 		
 		JPanel panelC = new JPanel();
-		getContentPane().add(panelC, BorderLayout.CENTER);
+		this.add(panelC, BorderLayout.CENTER);
 		panelC.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel label1 = new JLabel("入金");
@@ -49,7 +46,7 @@ public class PaymentModeUi extends JFrame{
 		label1.setFont(new Font("Dialog", Font.BOLD, 30));
 		
 		JPanel panelS = new JPanel();
-		getContentPane().add(panelS, BorderLayout.SOUTH);
+		this.add(panelS, BorderLayout.SOUTH);
 		panelS.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelSS = new JPanel();

@@ -28,17 +28,6 @@ public class ModeUi extends JFrame {
 		getContentPane().add(buttonPanel, BorderLayout.NORTH);
 		buttonPanel.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JButton nextButton = new JButton("next");
-		nextButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				next();
-			}
-		});
-		buttonPanel.add(nextButton);
-		
 		JButton backButton = new JButton("back");
 		backButton.addActionListener(new ActionListener() {
 			
@@ -49,7 +38,18 @@ public class ModeUi extends JFrame {
 			}
 		});
 		buttonPanel.add(backButton);
-		
+				
+		JButton nextButton = new JButton("next");
+		nextButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				next();
+			}
+		});
+		buttonPanel.add(nextButton);
+
 		JButton cancelButton = new JButton("cancel");
 		buttonPanel.add(cancelButton);
 		

@@ -17,11 +17,13 @@ import java.awt.FlowLayout;
 
 public class PaymentModeUi extends JPanel{
 	private Money remainingMoney = new Money();
-	private Money chargeMoney = new Money();
+	private Money necessaryMoney = new Money();
 	
 	private JLabel ableMoneyKinds = new JLabel("無し");
 	private JLabel remainingMoneyLabel = new JLabel("0");
+	private JLabel label4 = new JLabel("必要額：");
 	private JLabel necessaryMoneyLabel = new JLabel("0");
+	private JLabel label6 = new JLabel("円");
 	
 	public PaymentModeUi() {
 		setLayout(new BorderLayout(0, 0));
@@ -75,17 +77,28 @@ public class PaymentModeUi extends JPanel{
 		JPanel panel = new JPanel();
 		panelS.add(panel, BorderLayout.SOUTH);
 		
-		JLabel label4 = new JLabel("必要額：");
+		label4.setEnabled(false);
 		panel.add(label4);
 		
+		necessaryMoneyLabel.setEnabled(false);
 		panel.add(necessaryMoneyLabel);
 		
-		JLabel lavel6 = new JLabel("円");
-		panel.add(lavel6);
+		label6.setEnabled(false);
+		panel.add(label6);
 	}
 	
-	public void update() {
+	public PaymentModeUi(Money necessaryMoney_in) {
+		this();
+		
+		label4.setEnabled(true);
+		
+		necessaryMoney = necessaryMoney_in;
+		necessaryMoneyLabel.setEnabled(true);
+		
+		label6.setEnabled(true);
+	}
+	
+	public void update(Money remainingMoney_in) {
 		remainingMoneyLabel.setText(String.valueOf(remainingMoney.getMoney()));
-		necessaryMoneyLabel.setText(String.valueOf(chargeMoney.getMoney()));
 	}
 }

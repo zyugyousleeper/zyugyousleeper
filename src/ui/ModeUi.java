@@ -73,12 +73,12 @@ public class ModeUi extends JFrame {
 	}
 	
 	public void next() {
-		nowPanel++;
+		if(nowPanel < panels.size()-1) nowPanel++;
 		refresh();
 	}
 	
 	public void back() {
-		nowPanel--;
+		if(nowPanel > 0) nowPanel--;
 		refresh();
 	}
 	

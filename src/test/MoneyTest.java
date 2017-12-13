@@ -5,12 +5,11 @@ import model.Money;
 public class MoneyTest {
 	public static void main(String[] args) {
 		Money money = new Money();
-		try {
-			money.addMoney(Money.FIFTY_YEN, 150);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(money.getMoneyKinds().get(Money.FIFTY_YEN));
+		Money money2 = new Money();
+		money.addMoney(Money.HUNDRED_YEN, 5);
+		money.addMoney(Money.FIVEHUNDRED_YEN, 1);
+		money2.addMoney(Money.HUNDRED_YEN, 8);
+		money.plusMoney(money2);
+		System.out.println(money.getMoneyKinds().get(Money.HUNDRED_YEN));
 	}
 }

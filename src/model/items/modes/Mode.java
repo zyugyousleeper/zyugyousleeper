@@ -6,7 +6,7 @@ import ui.ModeUi;
 public class Mode extends Item{
 	ModeUi ui = new ModeUi();
 	public Mode() {
-		
+		setText("Mode");
 	}
 	
 	@Override

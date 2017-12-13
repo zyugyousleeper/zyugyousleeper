@@ -1,4 +1,4 @@
-package model;
+package model.items;
 
 public class Item {
 	private String text = "Text";
@@ -10,4 +10,9 @@ public class Item {
 	public void setText(String text) {
 		this.text = text;
 	}
+	
+	public void onClick() {
+
+	}
+	
 }

@@ -1,6 +1,6 @@
 package test;
 
-import model.Item;
+import model.items.Item;
 import ui.Container;
 
 public class ContainerTest {

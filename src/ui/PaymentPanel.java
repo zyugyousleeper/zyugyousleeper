@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 
-public class PaymentModeUi extends JPanel{
+public class PaymentPanel extends JPanel{
 	private Money remainingMoney;
 	private Money chargeMoney;
 	
@@ -23,7 +23,7 @@ public class PaymentModeUi extends JPanel{
 	private JLabel remainingMoneyLabel = new JLabel("0");
 	private JLabel chargeMoneyLabel = new JLabel("0");
 	
-	public PaymentModeUi(Money remainingMoney_in, Money chargeMoney_in) {
+	public PaymentPanel(Money remainingMoney_in, Money chargeMoney_in) {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelC = new JPanel();

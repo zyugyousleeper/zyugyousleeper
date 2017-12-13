@@ -3,14 +3,14 @@ package test;
 import javax.swing.JFrame;
 
 import model.Money;
-import ui.PaymentModeUi;
+import ui.PaymentPanel;
 
-public class PaymentModeUiTest {
+public class PaymentPanelTest {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		Money remainingMoney = new Money();
 		Money chargeMoney = new Money();
-		PaymentModeUi paymentModeUi = new PaymentModeUi(remainingMoney, chargeMoney);
+		PaymentPanel paymentModeUi = new PaymentPanel(remainingMoney, chargeMoney);
 		frame.add(paymentModeUi);
 		frame.setVisible(true);
 		remainingMoney.addMoney(Money.TEN_YEN, 50);

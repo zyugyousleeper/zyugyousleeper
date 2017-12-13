@@ -6,11 +6,11 @@ import java.awt.Panel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import ui.ModeUi;
+import ui.ModeFrame;
 
-public class ModeUiTest {
+public class ModeFrameTest {
 	public static void main(String[] args) {
-		ModeUi frame = new ModeUi();
+		ModeFrame frame = new ModeFrame();
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.YELLOW);

@@ -13,12 +13,12 @@ import java.util.Iterator;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 
-public class ModeUi extends JFrame {
+public class ModeFrame extends JFrame {
 	JLabel fractionLabel;
 	ArrayList<JPanel> panels = new ArrayList<>();
 	int nowPanel = 0;
 	
-	public ModeUi() {
+	public ModeFrame() {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		fractionLabel = new JLabel("New label");

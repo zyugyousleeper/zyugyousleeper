@@ -1,10 +1,10 @@
 package model.items.modes;
 
 import model.items.Item;
-import ui.ModeUi;
+import ui.ModeFrame;
 
 public class Mode extends Item{
-	ModeUi ui = new ModeUi();
+	ModeFrame ui = new ModeFrame();
 	public Mode() {
 		
 	}

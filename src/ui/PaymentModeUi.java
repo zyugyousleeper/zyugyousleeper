@@ -87,8 +87,7 @@ public class PaymentModeUi extends JPanel{
 		panel.add(label6);
 	}
 	
-	public PaymentModeUi(Money necessaryMoney_in) {
-		this();
+	public void setNecessaryMoney(Money necessaryMoney_in) {
 		
 		label4.setEnabled(true);
 		

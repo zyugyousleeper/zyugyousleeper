@@ -11,7 +11,8 @@ public class PaymentModeUiTest {
 		Money remainingMoney = new Money();
 		Money necessaryMoney = new Money();
 		necessaryMoney.addMoney(Money.TEN_YEN, 50);
-		PaymentModeUi paymentModeUi = new PaymentModeUi(necessaryMoney);
+		PaymentModeUi paymentModeUi = new PaymentModeUi();
+		paymentModeUi.setNecessaryMoney(necessaryMoney);
 		frame.add(paymentModeUi);
 		frame.setVisible(true);
 		remainingMoney.addMoney(Money.TEN_YEN, 50);

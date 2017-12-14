@@ -3,10 +3,14 @@ package ui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+
+import javax.print.DocFlavor.INPUT_STREAM;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 import model.Money;
 
@@ -85,6 +89,14 @@ public class PaymentModeUi extends JPanel{
 		
 		label6.setEnabled(false);
 		panel.add(label6);
+	}
+	
+	public void setMoneyKinds(int... moneyKinds) {
+		String string = new String();
+		for (int kind : moneyKinds) {
+			string += String.valueOf(kind) + "円,";
+		}
+		ableMoneyKinds.setText(string);
 	}
 	
 	public void setNecessaryMoney(Money necessaryMoney_in) {

@@ -96,7 +96,7 @@ public class PaymentModeUi extends JPanel{
 		for (int kind : moneyKinds) {
 			string += String.valueOf(kind) + "円,";
 		}
-		ableMoneyKinds.setText(string);
+		ableMoneyKinds.setText(string.substring(0, string.length() - 1));
 	}
 	
 	public void setNecessaryMoney(Money necessaryMoney_in) {

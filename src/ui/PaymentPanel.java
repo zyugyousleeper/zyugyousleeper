@@ -3,10 +3,14 @@ package ui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+
+import javax.print.DocFlavor.INPUT_STREAM;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 import model.Money;
 
@@ -16,45 +20,32 @@ import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 
 public class PaymentPanel extends JPanel{
-	private Money remainingMoney;
-	private Money chargeMoney;
+	private Money remainingMoney = new Money();
+	private Money necessaryMoney = new Money();
 	
 	private JLabel ableMoneyKinds = new JLabel("無し");
 	private JLabel remainingMoneyLabel = new JLabel("0");
-	private JLabel chargeMoneyLabel = new JLabel("0");
+	private JLabel label4 = new JLabel("必要額：");
+	private JLabel necessaryMoneyLabel = new JLabel("0");
+	private JLabel label6 = new JLabel("円");
 	
-	public PaymentPanel(Money remainingMoney_in, Money chargeMoney_in) {
+	public PaymentPanel() {
 		setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelC = new JPanel();
-		this.add(panelC, BorderLayout.NORTH);
-		panelC.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JPanel panelN = new JPanel();
+		this.add(panelN, BorderLayout.NORTH);
+		panelN.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel label1 = new JLabel("入金");
-		panelC.add(label1);
+		panelN.add(label1);
 		label1.setFont(new Font("Dialog", Font.BOLD, 30));
 		
-		JPanel panelS = new JPanel();
-		this.add(panelS);
-		panelS.setLayout(new BorderLayout(0, 0));
-		
-		JPanel panelSS = new JPanel();
-		panelS.add(panelSS, BorderLayout.SOUTH);
-		panelSS.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JButton chargeButton = new JButton("チャージ！！");
-		chargeButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//TODO:チャージをリメインに加算する
-				//TODO:加算した後のチャージを空にする
-				update();
-			}
-		});
-		panelSS.add(chargeButton);
+		JPanel panelC = new JPanel();
+		this.add(panelC);
+		panelC.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelSN = new JPanel();
-		panelS.add(panelSN, BorderLayout.NORTH);
+		panelC.add(panelSN, BorderLayout.NORTH);
 		panelSN.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelSNN = new JPanel();
@@ -72,6 +63,10 @@ public class PaymentPanel extends JPanel{
 		
 		panelSNC.add(ableMoneyKinds);
 		
+		JPanel panelS = new JPanel();
+		add(panelS, BorderLayout.SOUTH);
+		panelS.setLayout(new BorderLayout(0, 0));
+		
 		JPanel panelSC = new JPanel();
 		panelS.add(panelSC, BorderLayout.CENTER);
 		
@@ -80,18 +75,43 @@ public class PaymentPanel extends JPanel{
 		
 		panelSC.add(remainingMoneyLabel);
 		
-		JLabel label4 = new JLabel("　　チャージ額：");
-		panelSC.add(label4);
+		JLabel lavel5 = new JLabel("円");
+		panelSC.add(lavel5);
 		
-		panelSC.add(chargeMoneyLabel);
+		JPanel panel = new JPanel();
+		panelS.add(panel, BorderLayout.SOUTH);
 		
-		remainingMoney = remainingMoney_in;
-		chargeMoney = chargeMoney_in;
-		update();
+		label4.setEnabled(false);
+		panel.add(label4);
+		
+		necessaryMoneyLabel.setEnabled(false);
+		panel.add(necessaryMoneyLabel);
+		
+		label6.setEnabled(false);
+		panel.add(label6);
 	}
 	
-	public void update() {
+	public void setMoneyKinds(int... moneyKinds) {
+		String string = new String();
+		for (int kind : moneyKinds) {
+			string += String.valueOf(kind) + "円,";
+		}
+		ableMoneyKinds.setText(string.substring(0, string.length() - 1));
+	}
+	
+	public void setNecessaryMoney(Money necessaryMoney_in) {
+		
+		label4.setEnabled(true);
+		
+		necessaryMoney = necessaryMoney_in;
+		necessaryMoneyLabel.setText(String.valueOf(necessaryMoney.getMoney()));
+		necessaryMoneyLabel.setEnabled(true);
+		
+		label6.setEnabled(true);
+	}
+	
+	public void update(Money remainingMoney_in) {
+		remainingMoney = remainingMoney_in;
 		remainingMoneyLabel.setText(String.valueOf(remainingMoney.getMoney()));
-		chargeMoneyLabel.setText(String.valueOf(chargeMoney.getMoney()));
 	}
 }

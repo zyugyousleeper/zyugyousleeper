@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import model.items.Item;
+import wrapper.FrameWrapper;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -13,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Container<T extends Item> extends JFrame {
+public class Container<T extends Item> extends FrameWrapper {
 
 	private JPanel contentPane;
 	private ArrayList<T> modes = new ArrayList<>();

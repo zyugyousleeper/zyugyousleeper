@@ -13,13 +13,14 @@ import javax.swing.SwingConstants;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 import model.Money;
+import wrapper.PanelWrapper;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 
-public class PaymentPanel extends JPanel{
+public class PaymentPanel extends PanelWrapper{
 	private Money remainingMoney = new Money();
 	private Money necessaryMoney = new Money();
 	

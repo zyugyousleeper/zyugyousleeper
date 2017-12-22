@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import wrapper.FrameWrapper;
+
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +16,7 @@ import java.util.Iterator;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 
-public class ModeFrame extends JFrame {
+public class ModeFrame extends FrameWrapper {
 	JLabel fractionLabel;
 	ArrayList<JPanel> panels = new ArrayList<>();
 	int nowPanel = 0;

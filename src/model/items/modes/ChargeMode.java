@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 
 public class ChargeMode extends Mode {
 	public ChargeMode() {
+		setText("ChargeMode");
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.YELLOW);
 		ui.addPanel(panel);

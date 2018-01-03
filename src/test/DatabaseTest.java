@@ -66,9 +66,9 @@ public class DatabaseTest {
             {
                 /*getString()メソッドは、引数に指定されたフィールド名(列)の値をStringとして取得する*/
                 String str1 = result.getString( "id" );
-//                Date str2 = result.getDate( "date" );
+                Date str2 = result.getDate( "date" );
                 String str3 = result.getString( "name" );
-                System.out.println( str1 + ", " + /*str2.toString() + ", " +*/ str3);
+                System.out.println( str1 + ", " + str2 + ", " + str3);
             }
 
             /*ResultSetオブジェクトを閉じる*/

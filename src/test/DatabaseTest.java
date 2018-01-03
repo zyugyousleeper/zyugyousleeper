@@ -10,8 +10,8 @@ import java.sql.Statement;
 public class DatabaseTest {
 	public static void main(String[] args) throws Exception {
         /*接続先サーバー名を"localhost"で与えることを示している*/
-        String servername     = "192.168.0.8";
-
+//        String servername     = "192.168.0.8";
+		String servername = "localhost";
         /*接続するデータベース名をsenngokuとしている*/
         String databasename   = "yui";
 
@@ -25,7 +25,7 @@ public class DatabaseTest {
         String serverencoding = "UTF-8";
 
         /*データベースをあらわすURLを設定している*/
-        String url =  "jdbc:mysql://192.168.0.8/" + databasename;
+        String url =  "jdbc:mysql://" + servername + "/" + databasename;
 
         /*MySQLの場合、URLの形式は次のようになります。
           jdbc:mysql://(サーバ名)/(データベース名)*/

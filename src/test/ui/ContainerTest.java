@@ -1,4 +1,4 @@
-package test;
+package test.ui;
 
 import model.items.Item;
 import ui.Container;

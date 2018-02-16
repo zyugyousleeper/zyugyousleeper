@@ -1,4 +1,4 @@
-package test;
+package test.ui;
 
 import java.awt.Color;
 import java.awt.Panel;

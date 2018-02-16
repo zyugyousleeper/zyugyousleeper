@@ -1,11 +1,24 @@
 package test;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.omg.CORBA_2_3.portable.InputStream;
+
 import sun.net.www.http.HttpClient;
 
 public class JSONTest {
 	public static void main(String[] args) {
 		StringBuilder builder = new StringBuilder();
-		HttpClient client = new DefaultHttpClient();
+		DefaultHttpClient client = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(
 				"https://api.twitter.com/1/statuses/user_timeline.json?screen_name=takapon_jp");
 		
@@ -20,7 +33,7 @@ public class JSONTest {
 				//レスポンスからHTTPエンティティ（実体）を生成
 				HttpEntity entity = response.getEntity();
 				//HTTPエンティティからコンテント（中身）を生成
-				InputStream content = entity.getContent();
+				InputStream content = (InputStream) entity.getContent();
 				//コンテントからInputStreamReaderを生成し、さらにBufferedReaderを作る
 				//InputStreamReaderはテキストファイル（InputStream）を読み込む
 				//BufferedReaderはテキストファイルを一行ずつ読み込む

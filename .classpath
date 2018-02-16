@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="lib/remotevm/remotevmlauncher-agent-1.0-20140103.103618-5.jar"/>
 	<classpathentry kind="lib" path="lib/remotevm/remotevmlauncher-client-1.0-20140103.103630-5.jar"/>
 	<classpathentry kind="lib" path="lib/mysql/mysql-connector-java-5.1.45-bin.jar"/>
+	<classpathentry kind="lib" path="lib/json/org.json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

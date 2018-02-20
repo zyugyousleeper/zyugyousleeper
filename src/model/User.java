@@ -2,7 +2,7 @@ package model;
 
 public class User {
 	private String name;
-	private int studentNum;
+	private int userID;
 	private String felicaID;
 	public String getName() {
 		return name;
@@ -11,10 +11,10 @@ public class User {
 		this.name = name;
 	}
 	public int getStudentNum() {
-		return studentNum;
+		return userID;
 	}
 	public void setStudentNum(int studentNum) {
-		this.studentNum = studentNum;
+		this.userID = studentNum;
 	}
 	public String getFelicaID() {
 		return felicaID;

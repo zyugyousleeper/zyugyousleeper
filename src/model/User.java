@@ -1,6 +1,6 @@
 package model;
 
-public class Human {
+public class User {
 	private String name;
 	private int studentNum;
 	private String felicaID;

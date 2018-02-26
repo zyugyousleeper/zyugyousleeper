@@ -1,31 +1,36 @@
 package model.items.modes;
 
-import java.awt.Color;
+import com.pi4j.io.serial.SerialDataEvent;
+import com.pi4j.io.serial.SerialDataEventListener;
 
-import javax.swing.JPanel;
+import model.CoinThread;
+import model.Money;
+import ui.PaymentPanel;
 
 public class ChargeMode extends Mode {
 	public ChargeMode() {
 		setText("ChargeMode");
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.YELLOW);
+		PaymentPanel panel = new PaymentPanel();
+		panel.setMoneyKinds(Money.FIVEHUNDRED_YEN,Money.HUNDRED_YEN,Money.FIFTY_YEN,Money.TEN_YEN);
+		Money now = new Money();
+		
+		CoinThread coinThread = new CoinThread();
+		coinThread.setSerialDataEventListener(new SerialDataEventListener() {
+			@Override
+			public void dataReceived(SerialDataEvent arg0) {
+				try {
+					String inputMoney = arg0.getAsciiString();
+					int kindOfMoney = Integer.parseInt(inputMoney);
+					now.addMoney(kindOfMoney, 1);
+					System.out.println(kindOfMoney);
+				} catch (Exception e) {
+					System.out.println(e);
+				}
+				panel.update(now);
+			}
+		});
+		coinThread.start();
 		ui.addPanel(panel);
-		
-		JPanel panel2 = new JPanel();
-		panel2.setBackground(Color.RED);
-		ui.addPanel(panel2);
-		
-		JPanel panel3 = new JPanel();
-		panel3.setBackground(Color.BLUE);
-		ui.addPanel(panel3);
-		
-		JPanel panel4 = new JPanel();
-		panel4.setBackground(Color.GREEN);
-		ui.addPanel(panel4);
-		
-		JPanel panel5 = new JPanel();
-		panel5.setBackground(Color.BLACK);
-		ui.addPanel(panel5);
 	}
 }

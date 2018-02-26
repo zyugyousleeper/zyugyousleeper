@@ -4,30 +4,32 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class NFCThread extends Thread{
-	boolean moving = false;
+	private boolean moving = false;
+	private String previousID = "";
+	private NFCTouchListener listener;
+	
 	@Override
 	public void run() {
 		super.run();
 		try {
 			moving = true;
 			while (moving) {
-				String[] command = {"python","felica2-2.py"};
+				String[] command = {"python","felica2-3.py"};
 		        Runtime r = Runtime.getRuntime();
 				Process p = r.exec(command);
 
 				int result = p.waitFor();
 				System.out.println(result);
 				
-				BufferedReader r_std = new BufferedReader(new InputStreamReader(p.getInputStream()));
-				
-				String line_std = null;
-				StringBuilder stdOutput = new StringBuilder();
-				while ((line_std = r_std.readLine()) != null) {
-					stdOutput.append(line_std + "\n");
+				BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+				String buf = null;
+				StringBuilder builder = new StringBuilder();
+				while ((buf = br.readLine()) != null) {
+					builder.append(buf + "\n");
 				}
-				System.out.println(stdOutput.toString());
+				callListener(builder.toString());
 				
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -35,7 +37,24 @@ public class NFCThread extends Thread{
 			
 		}
 	}
+	
+	private void callListener(String output) {
+		if(output.equals(previousID) || listener==null) return;
+		if(!output.equals("")) listener.onConnect(output);
+		if(!previousID.equals("")) listener.onRelease(previousID);
+		previousID = output;
+	}
+	
+	public void setNFCTouchListener(NFCTouchListener listener) {
+		this.listener = listener;
+	}
+	
 	public void close() {
 		moving = false;
+	}
+	
+	public interface NFCTouchListener{
+		void onConnect(String id);
+		void onRelease(String id);
 	}
 }

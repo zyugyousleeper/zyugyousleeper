@@ -15,8 +15,8 @@ public class ReadSignalTest {
 			@Override
 			public void dataReceived(SerialDataEvent arg0) {
 				try {
-					System.out.println(arg0.getHexByteString());
-				} catch (IOException e) {
+					System.out.println(arg0.getAsciiString());
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

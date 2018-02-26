@@ -23,7 +23,9 @@ public class ChargeMode extends Mode {
 					String inputMoney = arg0.getAsciiString();
 					int kindOfMoney = Integer.parseInt(inputMoney);
 					now.addMoney(kindOfMoney, 1);
+					
 					System.out.println(kindOfMoney);
+					System.out.println(now.getMoneyKinds().get(kindOfMoney));
 				} catch (Exception e) {
 					System.out.println(e);
 				}

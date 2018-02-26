@@ -22,7 +22,8 @@ public class Money {
 	}
 	
 	public void addMoney(int kind,int numberOfCoins) {
-		this.moneyKinds.put(kind, numberOfCoins);
+		int nowCoins = moneyKinds.get(kind)== null ? 0:moneyKinds.get(kind);
+		this.moneyKinds.put(kind, numberOfCoins + nowCoins);
 		this.money += kind*numberOfCoins;
 	}
 	

@@ -40,8 +40,8 @@ public class NFCThread extends Thread{
 	
 	private void callListener(String output) {
 		if(output.equals(previousID) || listener==null) return;
-		if(!output.equals("")) listener.onConnect(output);
 		if(!previousID.equals("")) listener.onRelease(previousID);
+		if(!output.equals("")) listener.onConnect(output);
 		previousID = output;
 	}
 	

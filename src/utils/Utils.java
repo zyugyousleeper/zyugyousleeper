@@ -14,9 +14,11 @@ import org.json.JSONObject;
 import model.User;
 
 public class Utils {
-	static User getUser(int userID) throws Exception {
+	public static User getUser(int userID) throws Exception {
+		String url = "http://192.168.1.171:8080/api/users/" + String.valueOf(userID) + "/";
+		
 		CloseableHttpClient client = HttpClients.createDefault();
-		HttpGet httpGet = new HttpGet("http://www.ekidata.jp/api/l/25001.json");
+		HttpGet httpGet = new HttpGet(url);
 		StringBuilder builder = new StringBuilder();
 		HttpResponse response = client.execute(httpGet);
 		
@@ -34,9 +36,9 @@ public class Utils {
 		JSONObject jsonObject = new JSONObject(builder.toString());
 		
 		User user = new User();
-		user.setStudentNum(jsonObject.getInt("userID"));
+		user.setStudentNum(jsonObject.getInt("user_id"));
 		user.setName(jsonObject.getString("name"));
-		user.setFelicaID(jsonObject.getString("felicaID"));
+		user.setFelicaID(jsonObject.getString("felica_id"));
 			
 		return user;
 	}

@@ -19,6 +19,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
+import model.Money;
 import model.User;
 
 public class Utils {
@@ -46,6 +47,7 @@ public class Utils {
 		user.setStudentNum(jsonObject.getInt("user_id"));
 		user.setName(jsonObject.getString("name"));
 		user.setFelicaID(jsonObject.getString("felica_id"));
+		user.setMoney(new Money(jsonObject.getInt("money")));
 			
 		return user;
 		

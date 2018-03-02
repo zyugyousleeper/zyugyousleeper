@@ -21,6 +21,10 @@ public class Money {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Money(int money) {
+		this.money = money;
+	}
+	
 	public void addMoney(int kind,int numberOfCoins) {
 		int nowCoins = moneyKinds.get(kind)== null ? 0:moneyKinds.get(kind);
 		this.moneyKinds.put(kind, numberOfCoins + nowCoins);

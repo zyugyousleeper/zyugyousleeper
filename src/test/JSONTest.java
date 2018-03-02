@@ -9,7 +9,7 @@ public class JSONTest {
 	public static void main(String[] args) {
 		try {
 			User user = Utils.getUser(16000);
-			System.out.println(user.getName()+user.getFelicaID()+user.getStudentNum());
+			System.out.println(user.getName()+user.getFelicaID()+user.getStudentNum()+user.getMoney().getMoney());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

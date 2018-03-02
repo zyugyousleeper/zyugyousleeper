@@ -67,7 +67,7 @@ public class Utils {
 	
 	public static void deleteUser(int userID) throws Exception {
 		final String url = "http://192.168.1.219:8080/api/users/" + String.valueOf(userID) + "/";
-		HttpDelete httpGet = new HttpDelete(url+"/");
+		HttpDelete httpGet = new HttpDelete(url);
 		HTTPExcute(httpGet);	
 	}
 	

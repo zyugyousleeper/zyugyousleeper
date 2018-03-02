@@ -15,7 +15,7 @@ public class JSONTest {
 			user.setStudentNum(16009);
 			user.setMoney(new Money(0));
 			
-			Utils.patchUser(user);
+			Utils.deleteUser(user.getStudentNum());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

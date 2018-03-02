@@ -13,9 +13,9 @@ public class JSONTest {
 			user.setFelicaID("SYARO");
 			user.setName("シャロ");
 			user.setStudentNum(16009);
-			user.setMoney(new Money(100000));
+			user.setMoney(new Money(0));
 			
-			Utils.postUser(user);
+			Utils.patchUser(user);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

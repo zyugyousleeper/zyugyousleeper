@@ -12,6 +12,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
@@ -70,16 +71,17 @@ public class Utils {
 		HTTPExcute(httpGet);	
 	}
 	
-	static void putUser(User user) throws Exception {
+	public static User patchUser(User user) throws Exception {
 		final String url = "http://192.168.1.219:8080/api/users/" + String.valueOf(user.getStudentNum()) + "/";
-		HttpPost put = new HttpPost(url);
+		HttpPatch patch = new HttpPatch(url);
 		
-		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("name", user.getName()));
-		params.add(new BasicNameValuePair("felica_id", user.getFelicaID()));
-		params.add(new BasicNameValuePair("user_id", String.valueOf(user.getStudentNum())));
+		String entity = 
+				"{\"name\":\""+user.getName()+"\",\"user_id\":"+String.valueOf(user.getStudentNum())+",\"felica_id\":\""+user.getFelicaID()+"\",\"money\":"+String.valueOf(user.getMoney().getMoney())+"}";
+        
+		patch.setHeader("Content-type", "application/json; charset=UTF-8");
+        patch.setEntity(new StringEntity(entity,"UTF-8"));
 		
-		HTTPExcute(put);
+		return HTTPExcute(patch);
 	}
 	
 	public static User postUser(User newUser) throws Exception{

@@ -14,14 +14,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Container<T extends Item> extends FrameWrapper {
+public class Container<Item> extends FrameWrapper {
 
 	private JPanel contentPane;
-	private ArrayList<T> modes = new ArrayList<>();
+	private ArrayList<Item> modes = new ArrayList<>();
 
-	/**
-	 * Create the frame.
-	 */
 	public Container() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -33,17 +30,17 @@ public class Container<T extends Item> extends FrameWrapper {
 	
 	public void refresh() {
 		contentPane.removeAll();
-		Iterator<T> i = modes.iterator();
+		Iterator<Item> i = modes.iterator();
 		while(i.hasNext()){
 			JButton bufButton = new JButton();
-			T bufItem = i.next();
-			bufButton.addActionListener(e -> bufItem.onClick());
-			bufButton.setText(bufItem.getText());
+			Item bufItem = i.next();
+//			bufButton.addActionListener(e -> bufItem.());
+			bufButton.setText(bufItem.toString());
 			contentPane.add(bufButton);
 		}
 	}
 	
-	public void addItem(T mode) {
+	public void addItem(Item mode) {
 		this.modes.add(mode);
 		refresh();
 	}

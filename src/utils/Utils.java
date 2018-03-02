@@ -3,13 +3,19 @@ package utils;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
 import model.User;
@@ -58,7 +64,15 @@ public class Utils {
 		
 	}
 	
-	static void postUser(User newUser) {
+	public static void postUser(User newUser) throws Exception{
+		final String url = "http://192.168.1.171:8080/api/users/" + String.valueOf(newUser.getStudentNum()) + "/";
+		HttpPost post = new HttpPost(url);
 		
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("name", newUser.getName()));
+		params.add(new BasicNameValuePair("felica_id", newUser.getFelicaID()));
+		params.add(new BasicNameValuePair("user_id", String.valueOf(newUser.getStudentNum())));
+		
+		HTTPExcute(post);
 	}
 }

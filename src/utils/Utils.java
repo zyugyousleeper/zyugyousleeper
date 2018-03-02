@@ -3,6 +3,7 @@ package utils;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
@@ -13,11 +14,14 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
+
+import com.mysql.jdbc.Buffer;
 
 import model.Money;
 import model.User;
@@ -31,7 +35,8 @@ public class Utils {
 		HttpResponse response = client.execute(reqest);
 		
 		int statusCode = response.getStatusLine().getStatusCode();
-		if (statusCode != 200) throw new Exception();
+		System.out.println(statusCode);
+		if (statusCode %100 ==2) throw new Exception();
 		
 		HttpEntity entity = response.getEntity();
 		InputStream content = entity.getContent();
@@ -77,15 +82,14 @@ public class Utils {
 		HTTPExcute(put);
 	}
 	
-	public static void postUser(User newUser) throws Exception{
-		final String url = "http://192.168.1.219:8080/api/users/" + String.valueOf(newUser.getStudentNum()) + "/";
-		HttpPost post = new HttpPost(url);
+	public static User postUser(User newUser) throws Exception{
+		HttpPost post = new HttpPost("http://192.168.1.219:8080/api/users/");
+		String entity = 
+				"{\"name\":\""+newUser.getName()+"\",\"user_id\":"+String.valueOf(newUser.getStudentNum())+",\"felica_id\":\""+newUser.getFelicaID()+"\",\"money\":"+String.valueOf(newUser.getMoney().getMoney())+"}";
+        
+		post.setHeader("Content-type", "application/json; charset=UTF-8");
+        post.setEntity(new StringEntity(entity,"UTF-8"));
 		
-		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("name", newUser.getName()));
-		params.add(new BasicNameValuePair("felica_id", newUser.getFelicaID()));
-		params.add(new BasicNameValuePair("user_id", String.valueOf(newUser.getStudentNum())));
-		
-		HTTPExcute(post);
+		return HTTPExcute(post);
 	}
 }

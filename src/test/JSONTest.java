@@ -1,7 +1,5 @@
 package test;
 
-import com.mysql.jdbc.Util;
-
 import model.Money;
 import model.User;
 import utils.Utils;

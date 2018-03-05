@@ -9,12 +9,10 @@ import model.items.Item;
 import wrapper.FrameWrapper;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Container<Item> extends FrameWrapper {
+public class Container<T extends Item> extends FrameWrapper {
 
 	private JPanel contentPane;
 	private ArrayList<Item> modes = new ArrayList<>();
@@ -34,8 +32,8 @@ public class Container<Item> extends FrameWrapper {
 		while(i.hasNext()){
 			JButton bufButton = new JButton();
 			Item bufItem = i.next();
-//			bufButton.addActionListener(e -> bufItem.());
-			bufButton.setText(bufItem.toString());
+			bufButton.addActionListener(bufItem.getActionListener());
+			bufButton.setText(bufItem.getText());
 			contentPane.add(bufButton);
 		}
 	}

@@ -7,12 +7,11 @@ import ui.ModeFrame;
 
 public class ChargeMode extends ModeFrame implements Item {
 	public ChargeMode() {
-		
+		super();
 	}
 
 	@Override
 	public String getText() {
-		// TODO Auto-generated method stub
 		return "ChargeMode";
 	}
 

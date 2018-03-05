@@ -3,28 +3,25 @@ package model.items;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import ui.Container;
-
-public class PurchaseMode extends Container<Product> implements Item {
-	public PurchaseMode() {
-		super();
-		addItem(new Product());
-		addItem(new Product());
-		addItem(new Product());
-	}
+public class Product implements Item {
 
 	@Override
 	public String getText() {
-		return "PurchaseMode";
+		// TODO Auto-generated method stub
+		return "商品";
 	}
 
 	@Override
 	public ActionListener getActionListener() {
+		// TODO Auto-generated method stub
 		return new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(true);
+				// TODO Auto-generated method stub
+				
 			}
 		};
 	}
+
 }

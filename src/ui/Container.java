@@ -15,7 +15,7 @@ import java.util.Iterator;
 public class Container<T extends Item> extends FrameWrapper {
 
 	private JPanel contentPane;
-	private ArrayList<Item> modes = new ArrayList<>();
+	private ArrayList<T> modes = new ArrayList<>();
 
 	public Container() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,17 +28,17 @@ public class Container<T extends Item> extends FrameWrapper {
 	
 	public void refresh() {
 		contentPane.removeAll();
-		Iterator<Item> i = modes.iterator();
+		Iterator<T> i = modes.iterator();
 		while(i.hasNext()){
 			JButton bufButton = new JButton();
-			Item bufItem = i.next();
+			T bufItem = i.next();
 			bufButton.addActionListener(bufItem.getActionListener());
 			bufButton.setText(bufItem.getText());
 			contentPane.add(bufButton);
 		}
 	}
 	
-	public void addItem(Item mode) {
+	public void addItem(T mode) {
 		this.modes.add(mode);
 		refresh();
 	}

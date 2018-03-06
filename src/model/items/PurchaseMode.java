@@ -3,14 +3,18 @@ package model.items;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import ui.Container;
+import ui.ContainerPanel;
+import ui.ModeFrame;
 
-public class PurchaseMode extends Container<Product> implements Item {
+public class PurchaseMode extends ModeFrame implements Item {
+	private ContainerPanel<Product> panel = new ContainerPanel<>();
+	
 	public PurchaseMode() {
 		super();
-		addItem(new Product());
-		addItem(new Product());
-		addItem(new Product());
+		panel.addItem(new Product());
+		panel.addItem(new Product());
+		panel.addItem(new Product());
+		addPanel(panel);
 	}
 
 	@Override

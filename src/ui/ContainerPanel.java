@@ -7,34 +7,31 @@ import javax.swing.border.EmptyBorder;
 
 import model.items.Item;
 import wrapper.FrameWrapper;
+import wrapper.PanelWrapper;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Container<T extends Item> extends FrameWrapper {
+public class ContainerPanel<T extends Item> extends PanelWrapper {
 
-	private JPanel contentPane;
 	private ArrayList<T> modes = new ArrayList<>();
 
-	public Container() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public ContainerPanel() {
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(2,3));
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLayout(new GridLayout(2,3));
 	}
 	
 	public void refresh() {
-		contentPane.removeAll();
+		removeAll();
 		Iterator<T> i = modes.iterator();
 		while(i.hasNext()){
 			JButton bufButton = new JButton();
 			T bufItem = i.next();
 			bufButton.addActionListener(bufItem.getActionListener());
 			bufButton.setText(bufItem.getText());
-			contentPane.add(bufButton);
+			add(bufButton);
 		}
 	}
 	

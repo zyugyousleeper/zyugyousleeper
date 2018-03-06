@@ -5,8 +5,9 @@ import model.NFCThread.NFCTouchListener;
 import model.items.ChargeMode;
 import model.items.Item;
 import model.items.PurchaseMode;
-import ui.Container;
+import ui.ContainerPanel;
 import ui.WaitingFrame;
+import wrapper.FrameWrapper;
 
 public class FullTest {
 	static NFCThread nfcThread;
@@ -22,7 +23,8 @@ public class FullTest {
 	}
 	
 	static NFCTouchListener listener = new NFCTouchListener() {
-		Container<Item> frame;
+		FrameWrapper frame;
+		ContainerPanel<Item> panel;
 		ChargeMode chargeMode;
 		PurchaseMode purchaseMode;
 		
@@ -30,13 +32,14 @@ public class FullTest {
 		public void onConnect(String id) {
 			waitingFrame.setVisible(false);
 			
-			frame = new Container<>();
+			frame = new FrameWrapper();
+			panel = new ContainerPanel<>();
+			frame.add(panel);
+			
 			chargeMode = new ChargeMode();
 			purchaseMode = new PurchaseMode();
-			
-			frame.addItem(chargeMode);
-			frame.addItem(purchaseMode);
-			frame.setVisible(true);
+			panel.addItem(chargeMode);
+			panel.addItem(purchaseMode);
 		}
 		
 		@Override

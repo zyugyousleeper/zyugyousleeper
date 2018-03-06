@@ -60,37 +60,37 @@ public class Utils {
 	}
 	
 	public static User getUser(int userID) throws Exception {
-		final String url = "http://192.168.1.219:8080/api/users/" + String.valueOf(userID) + "/";
+		final String url = "http://192.168.1.219/api/users/" + String.valueOf(userID) + "/";
 		HttpGet httpGet = new HttpGet(url);
 		return HTTPExcute(httpGet);
 	}
 	
 	public static void deleteUser(int userID) throws Exception {
-		final String url = "http://192.168.1.219:8080/api/users/" + String.valueOf(userID) + "/";
+		final String url = "http://192.168.1.219/api/users/" + String.valueOf(userID) + "/";
 		HttpDelete httpGet = new HttpDelete(url);
 		HTTPExcute(httpGet);	
 	}
 	
 	public static User patchUser(User user) throws Exception {
-		final String url = "http://192.168.1.219:8080/api/users/" + String.valueOf(user.getStudentNum()) + "/";
+		final String url = "http://192.168.1.219/api/users/" + String.valueOf(user.getStudentNum()) + "/";
 		HttpPatch patch = new HttpPatch(url);
 		
 		String entity = 
 				"{\"name\":\""+user.getName()+"\",\"user_id\":"+String.valueOf(user.getStudentNum())+",\"felica_id\":\""+user.getFelicaID()+"\",\"money\":"+String.valueOf(user.getMoney().getMoney())+"}";
         
 		patch.setHeader("Content-type", "application/json; charset=UTF-8");
-        patch.setEntity(new StringEntity(entity,"UTF-8"));
+       patch.setEntity(new StringEntity(entity,"UTF-8"));
 		
 		return HTTPExcute(patch);
 	}
 	
 	public static User postUser(User newUser) throws Exception{
-		HttpPost post = new HttpPost("http://192.168.1.219:8080/api/users/");
+		HttpPost post = new HttpPost("http://192.168.1.219/api/users/");
 		String entity = 
 				"{\"name\":\""+newUser.getName()+"\",\"user_id\":"+String.valueOf(newUser.getStudentNum())+",\"felica_id\":\""+newUser.getFelicaID()+"\",\"money\":"+String.valueOf(newUser.getMoney().getMoney())+"}";
         
 		post.setHeader("Content-type", "application/json; charset=UTF-8");
-        post.setEntity(new StringEntity(entity,"UTF-8"));
+       post.setEntity(new StringEntity(entity,"UTF-8"));
 		
 		return HTTPExcute(post);
 	}

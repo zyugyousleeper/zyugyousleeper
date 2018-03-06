@@ -15,6 +15,8 @@ import java.util.Iterator;
 
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.Font;
+import java.awt.Color;
 
 public class ModeFrame extends FrameWrapper {
 	JLabel fractionLabel;
@@ -22,17 +24,22 @@ public class ModeFrame extends FrameWrapper {
 	int nowPanel = 0;
 	
 	public ModeFrame() {
+		setBackground(Color.DARK_GRAY);
+		getContentPane().setBackground(Color.DARK_GRAY);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		fractionLabel = new JLabel("New label");
+		fractionLabel.setFont(new Font("DejaVu Sans", Font.BOLD, 12));
 		getContentPane().add(fractionLabel, BorderLayout.SOUTH);
 		fractionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JPanel buttonPanel = new JPanel();
+		buttonPanel.setBackground(Color.WHITE);
 		getContentPane().add(buttonPanel, BorderLayout.NORTH);
 		buttonPanel.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JButton backButton = new JButton("back");
+		backButton.setFont(new Font("DejaVu Sans", Font.BOLD, 12));
 		backButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -44,6 +51,7 @@ public class ModeFrame extends FrameWrapper {
 		buttonPanel.add(backButton);
 				
 		JButton nextButton = new JButton("next");
+		nextButton.setFont(new Font("DejaVu Sans", Font.BOLD, 12));
 		nextButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -55,6 +63,7 @@ public class ModeFrame extends FrameWrapper {
 		buttonPanel.add(nextButton);
 
 		JButton cancelButton = new JButton("cancel");
+		cancelButton.setFont(new Font("DejaVu Sans", Font.BOLD, 12));
 		buttonPanel.add(cancelButton);
 		
 		refresh();

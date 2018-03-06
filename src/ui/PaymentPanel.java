@@ -19,6 +19,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
+import java.awt.Color;
 
 public class PaymentPanel extends PanelWrapper{
 	private Money remainingMoney = new Money();
@@ -31,6 +32,7 @@ public class PaymentPanel extends PanelWrapper{
 	private JLabel label6 = new JLabel("円");
 	
 	public PaymentPanel() {
+		setBackground(Color.DARK_GRAY);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelN = new JPanel();
@@ -38,6 +40,7 @@ public class PaymentPanel extends PanelWrapper{
 		panelN.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel label1 = new JLabel("入金");
+		label1.setForeground(Color.LIGHT_GRAY);
 		panelN.add(label1);
 		label1.setFont(new Font("Dialog", Font.BOLD, 30));
 		
@@ -53,6 +56,7 @@ public class PaymentPanel extends PanelWrapper{
 		panelSN.add(panelSNN, BorderLayout.NORTH);
 		
 		JLabel label2 = new JLabel("お金を入れて下さい");
+		label2.setForeground(Color.LIGHT_GRAY);
 		panelSNN.add(label2);
 		label2.setFont(new Font("Dialog", Font.BOLD, 15));
 		
@@ -60,7 +64,9 @@ public class PaymentPanel extends PanelWrapper{
 		panelSN.add(panelSNC);
 		
 		JLabel label5 = new JLabel("投入できる貨幣：");
+		label5.setForeground(Color.LIGHT_GRAY);
 		panelSNC.add(label5);
+		ableMoneyKinds.setForeground(Color.LIGHT_GRAY);
 		
 		panelSNC.add(ableMoneyKinds);
 		
@@ -72,21 +78,27 @@ public class PaymentPanel extends PanelWrapper{
 		panelS.add(panelSC, BorderLayout.CENTER);
 		
 		JLabel label3 = new JLabel("残額：");
+		label3.setForeground(Color.LIGHT_GRAY);
 		panelSC.add(label3);
+		remainingMoneyLabel.setForeground(Color.LIGHT_GRAY);
 		
 		panelSC.add(remainingMoneyLabel);
 		
 		JLabel lavel5 = new JLabel("円");
+		lavel5.setForeground(Color.LIGHT_GRAY);
 		panelSC.add(lavel5);
 		
 		JPanel panel = new JPanel();
 		panelS.add(panel, BorderLayout.SOUTH);
+		label4.setForeground(Color.LIGHT_GRAY);
 		
 		label4.setEnabled(false);
 		panel.add(label4);
+		necessaryMoneyLabel.setForeground(Color.LIGHT_GRAY);
 		
 		necessaryMoneyLabel.setEnabled(false);
 		panel.add(necessaryMoneyLabel);
+		label6.setForeground(Color.LIGHT_GRAY);
 		
 		label6.setEnabled(false);
 		panel.add(label6);

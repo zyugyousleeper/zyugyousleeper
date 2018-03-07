@@ -8,40 +8,41 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import javax.swing.border.EmptyBorder;
+import javax.swing.BoxLayout;
 
 public class ConfirmationPanel extends PanelWrapper {
-	LabelWrapper nameLabel;
-	LabelWrapper praceLabel;
-	private PanelWrapper panel;
+
 	private ButtonWrapper okButton;
+	private ButtonWrapper cancelButton;
+	private LabelWrapper praceLabel = new LabelWrapper();
+	private LabelWrapper nameLabel = new LabelWrapper();
 	
 	public ConfirmationPanel() {
 		super();
-		setLayout(new BorderLayout(0, 0));
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		LabelWrapper label = new LabelWrapper();
-		label.setFont(new Font("Dialog", Font.BOLD, 40));
 		label.setText("以下のものを購入しますか？");
-		add(label, BorderLayout.NORTH);
 		
-		panel = new PanelWrapper();
-		add(panel, BorderLayout.CENTER);
-		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		panel.setLayout(new GridLayout(3,1));
+		PanelWrapper labelPanel = new PanelWrapper();
+		labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
+		labelPanel.add(nameLabel);
+		labelPanel.add(praceLabel);
 		
-		nameLabel = new LabelWrapper();
-		panel.add(nameLabel);
-		nameLabel.setFont(new Font("Dialog", Font.BOLD, 40));
-		
-		praceLabel = new LabelWrapper();
-		panel.add(praceLabel);
-		praceLabel.setFont(new Font("Dialog", Font.BOLD, 40));
-		
+		PanelWrapper buttonPanel = new PanelWrapper();
+		buttonPanel.setLayout(new GridLayout(1,2));
+				
 		okButton = new ButtonWrapper();
-		okButton.setFont(new Font("Dialog", Font.BOLD, 40));
 		okButton.setText("OK");
-		panel.add(okButton);
+		buttonPanel.add(okButton);
 		
+		cancelButton = new ButtonWrapper();
+		cancelButton.setText("Cancel");
+		buttonPanel.add(cancelButton);
+		
+		add(label);
+		add(labelPanel);
+		add(buttonPanel);
 	}
 	
 	public void setProduct(Product product) {

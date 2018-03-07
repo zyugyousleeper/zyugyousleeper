@@ -40,6 +40,8 @@ public class Utils {
 		if (statusCode %100 ==2) throw new Exception();
 		
 		HttpEntity entity = response.getEntity();
+		if (entity == null) return new User();
+		
 		InputStream content = entity.getContent();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(content));
 		String line;
@@ -61,14 +63,14 @@ public class Utils {
 	
 	public static User getUser(int userID) throws Exception {
 		final String url = "http://192.168.1.219/api/users/" + String.valueOf(userID) + "/";
-		HttpGet httpGet = new HttpGet(url);
-		return HTTPExcute(httpGet);
+		HttpGet get = new HttpGet(url);
+		return HTTPExcute(get);
 	}
 	
 	public static void deleteUser(int userID) throws Exception {
 		final String url = "http://192.168.1.219/api/users/" + String.valueOf(userID) + "/";
-		HttpDelete httpGet = new HttpDelete(url);
-		HTTPExcute(httpGet);	
+		HttpDelete delete = new HttpDelete(url);
+		HTTPExcute(delete);	
 	}
 	
 	public static User patchUser(User user) throws Exception {

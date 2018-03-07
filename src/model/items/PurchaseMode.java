@@ -19,7 +19,7 @@ public class PurchaseMode extends ModeFrame implements Item {
 
 	@Override
 	public String getText() {
-		return "PurchaseMode";
+		return "ものを購入";
 	}
 
 	@Override

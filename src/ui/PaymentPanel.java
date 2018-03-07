@@ -22,13 +22,9 @@ import java.awt.FlowLayout;
 
 public class PaymentPanel extends PanelWrapper{
 	private Money remainingMoney = new Money();
-	private Money necessaryMoney = new Money();
 	
 	private JLabel ableMoneyKinds = new JLabel("無し");
 	private JLabel remainingMoneyLabel = new JLabel("0");
-	private JLabel label4 = new JLabel("必要額：");
-	private JLabel necessaryMoneyLabel = new JLabel("0");
-	private JLabel label6 = new JLabel("円");
 	
 	public PaymentPanel() {
 		setLayout(new BorderLayout(0, 0));
@@ -39,7 +35,7 @@ public class PaymentPanel extends PanelWrapper{
 		
 		JLabel label1 = new JLabel("入金");
 		panelN.add(label1);
-		label1.setFont(new Font("Dialog", Font.BOLD, 30));
+		label1.setFont(new Font("Dialog", Font.BOLD, 50));
 		
 		JPanel panelC = new JPanel();
 		this.add(panelC);
@@ -54,13 +50,15 @@ public class PaymentPanel extends PanelWrapper{
 		
 		JLabel label2 = new JLabel("お金を入れて下さい");
 		panelSNN.add(label2);
-		label2.setFont(new Font("Dialog", Font.BOLD, 15));
+		label2.setFont(new Font("Dialog", Font.BOLD, 45));
 		
 		JPanel panelSNC = new JPanel();
 		panelSN.add(panelSNC);
 		
 		JLabel label5 = new JLabel("投入できる貨幣：");
+		label5.setFont(new Font("Dialog", Font.BOLD, 40));
 		panelSNC.add(label5);
+		ableMoneyKinds.setFont(new Font("Dialog", Font.BOLD, 40));
 		
 		panelSNC.add(ableMoneyKinds);
 		
@@ -72,24 +70,15 @@ public class PaymentPanel extends PanelWrapper{
 		panelS.add(panelSC, BorderLayout.CENTER);
 		
 		JLabel label3 = new JLabel("残額：");
+		label3.setFont(new Font("Dialog", Font.BOLD, 40));
 		panelSC.add(label3);
+		remainingMoneyLabel.setFont(new Font("Dialog", Font.BOLD, 40));
 		
 		panelSC.add(remainingMoneyLabel);
 		
 		JLabel lavel5 = new JLabel("円");
+		lavel5.setFont(new Font("Dialog", Font.BOLD, 40));
 		panelSC.add(lavel5);
-		
-		JPanel panel = new JPanel();
-		panelS.add(panel, BorderLayout.SOUTH);
-		
-		label4.setEnabled(false);
-		panel.add(label4);
-		
-		necessaryMoneyLabel.setEnabled(false);
-		panel.add(necessaryMoneyLabel);
-		
-		label6.setEnabled(false);
-		panel.add(label6);
 	}
 	
 	public void setMoneyKinds(int... moneyKinds) {
@@ -99,18 +88,7 @@ public class PaymentPanel extends PanelWrapper{
 		}
 		ableMoneyKinds.setText(string.substring(0, string.length() - 1));
 	}
-	
-	public void setNecessaryMoney(Money necessaryMoney_in) {
 		
-		label4.setEnabled(true);
-		
-		necessaryMoney = necessaryMoney_in;
-		necessaryMoneyLabel.setText(String.valueOf(necessaryMoney.getMoney()));
-		necessaryMoneyLabel.setEnabled(true);
-		
-		label6.setEnabled(true);
-	}
-	
 	public void update(Money remainingMoney_in) {
 		remainingMoney = remainingMoney_in;
 		remainingMoneyLabel.setText(String.valueOf(remainingMoney.getMoney()));

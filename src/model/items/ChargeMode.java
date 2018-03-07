@@ -14,7 +14,7 @@ public class ChargeMode extends ModeFrame implements Item {
 
 	@Override
 	public String getText() {
-		return "ChargeMode";
+		return "お金をチャージ";
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class ModeFrame extends FrameWrapper {
 	ArrayList<JPanel> panels = new ArrayList<>();
@@ -18,6 +19,7 @@ public class ModeFrame extends FrameWrapper {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JButton cancelButton = new JButton("cancel");
+		cancelButton.setFont(new Font("Dialog", Font.BOLD, 40));
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

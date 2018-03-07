@@ -9,6 +9,7 @@ import model.items.Item;
 import wrapper.FrameWrapper;
 import wrapper.PanelWrapper;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,10 +28,10 @@ public class ContainerPanel<T extends Item> extends PanelWrapper {
 		removeAll();
 		Iterator<T> i = modes.iterator();
 		while(i.hasNext()){
-			JButton bufButton = new JButton();
 			T bufItem = i.next();
+			JButton bufButton = new JButton(bufItem.getText());
 			bufButton.addActionListener(bufItem.getActionListener());
-			bufButton.setText(bufItem.getText());
+			bufButton.setFont(new Font("Dialog",Font.BOLD,30));
 			add(bufButton);
 		}
 	}

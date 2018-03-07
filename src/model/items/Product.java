@@ -1,21 +1,12 @@
 package model.items;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
-import com.sun.corba.se.spi.orbutil.fsm.Action;
-import com.sun.xml.internal.ws.api.pipe.Fiber.Listener;
 
 public class Product implements Item {
 	
 	private String name = "";
-	private ActionListener listener = new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-		}
-	};
+	private int price = 0;
+	private ActionListener listener;
 	
 	public void setText(String name) {
 		this.name = name;
@@ -32,8 +23,15 @@ public class Product implements Item {
 
 	@Override
 	public ActionListener getActionListener() {
-		// TODO Auto-generated method stub
 		return listener;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 }

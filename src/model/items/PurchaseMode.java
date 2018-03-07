@@ -7,33 +7,45 @@ import ui.ConfirmationPanel;
 import ui.ContainerPanel;
 import ui.ModeFrame;
 
-public class PurchaseMode extends ModeFrame implements Item {
+public class PurchaseMode extends ModeFrame implements Item{
 	private ContainerPanel<Product> panel = new ContainerPanel<>();
 	private ConfirmationPanel panel2 = new ConfirmationPanel();
-	private ActionListener productlistener = new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			next();
-		}
-	};
+	Product chocolate = new Product();
+	Product coffee = new Product();
+	Product cocoa = new Product();
 	
 	public PurchaseMode() {
 		super();
-		Product product = new Product();
-		product.setText("product1");
-		product.setlistener(productlistener);
+		chocolate.setText("ちょこれーと");
+		chocolate.setlistener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel2.setProduct(chocolate);
+				next();				
+			}
+		});
 
-		Product product2 = new Product();
-		product2.setText("product2");
-		product2.setlistener(productlistener);
+		coffee.setText("こーひー");
+		coffee.setlistener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel2.setProduct(coffee);
+				next();				
+			}
+		});
 
-		Product product3 = new Product();
-		product3.setText("product3");
-		product3.setlistener(productlistener);
+		cocoa.setText("ここあ");
+		cocoa.setlistener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel2.setProduct(cocoa);
+				next();
+			}
+		});
 		
-		panel.addItem(product);
-		panel.addItem(product2);
-		panel.addItem(product3);
+		panel.addItem(chocolate);
+		panel.addItem(coffee);
+		panel.addItem(cocoa);
 		
 		addPanel(panel);
 		addPanel(panel2);

@@ -1,14 +1,9 @@
 package ui;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import model.items.Item;
-import wrapper.FrameWrapper;
 import wrapper.PanelWrapper;
-
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;

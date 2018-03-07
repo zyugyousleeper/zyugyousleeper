@@ -11,6 +11,7 @@ public class ModeFrame extends FrameWrapper {
 	int nowPanel = 0;
 	
 	public ModeFrame() {
+		super();
 		refresh();
 	}
 	

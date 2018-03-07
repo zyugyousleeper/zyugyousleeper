@@ -28,10 +28,11 @@ public class PaymentPanel extends PanelWrapper{
 	private JLabel remainingMoneyLabel = new JLabel("0");
 	
 	public PaymentPanel() {
+		super();
 		setBackground(Color.DARK_GRAY);
 		setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelN = new JPanel();
+		JPanel panelN = new PanelWrapper();
 		this.add(panelN, BorderLayout.NORTH);
 		panelN.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -40,15 +41,15 @@ public class PaymentPanel extends PanelWrapper{
 		panelN.add(label1);
 		label1.setFont(new Font("Dialog", Font.BOLD, 50));
 		
-		JPanel panelC = new JPanel();
+		JPanel panelC = new PanelWrapper();
 		this.add(panelC);
 		panelC.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelSN = new JPanel();
+		JPanel panelSN = new PanelWrapper();
 		panelC.add(panelSN, BorderLayout.NORTH);
 		panelSN.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelSNN = new JPanel();
+		JPanel panelSNN = new PanelWrapper();
 		panelSN.add(panelSNN, BorderLayout.NORTH);
 		
 		JLabel label2 = new JLabel("お金を入れて下さい");
@@ -56,7 +57,7 @@ public class PaymentPanel extends PanelWrapper{
 		panelSNN.add(label2);
 		label2.setFont(new Font("Dialog", Font.BOLD, 45));
 		
-		JPanel panelSNC = new JPanel();
+		JPanel panelSNC = new PanelWrapper();
 		panelSN.add(panelSNC);
 		
 		JLabel label5 = new JLabel("投入できる貨幣：");
@@ -67,11 +68,11 @@ public class PaymentPanel extends PanelWrapper{
 		panelSNC.add(label5);		
 		panelSNC.add(ableMoneyKinds);
 		
-		JPanel panelS = new JPanel();
+		JPanel panelS = new PanelWrapper();
 		add(panelS, BorderLayout.SOUTH);
 		panelS.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelSC = new JPanel();
+		JPanel panelSC = new PanelWrapper();
 		panelS.add(panelSC, BorderLayout.CENTER);
 		
 		JLabel label3 = new JLabel("残額：");

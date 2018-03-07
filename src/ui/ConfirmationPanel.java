@@ -1,5 +1,6 @@
 package ui;
 
+import wrapper.ButtonWrapper;
 import wrapper.PanelWrapper;
 import javax.swing.JLabel;
 import model.items.Product;
@@ -17,13 +18,14 @@ public class ConfirmationPanel extends PanelWrapper {
 	private JButton okButton;
 	
 	public ConfirmationPanel() {
+		super();
 		setLayout(new BorderLayout(0, 0));
 
 		JLabel label = new JLabel("以下のものを購入しますか？");
 		label.setFont(new Font("Dialog", Font.BOLD, 40));
 		add(label, BorderLayout.NORTH);
 		
-		panel = new JPanel();
+		panel = new PanelWrapper();
 		add(panel, BorderLayout.CENTER);
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panel.setLayout(new GridLayout(3,1));
@@ -36,8 +38,9 @@ public class ConfirmationPanel extends PanelWrapper {
 		panel.add(praceLabel);
 		praceLabel.setFont(new Font("Dialog", Font.BOLD, 40));
 		
-		okButton = new JButton("OK");
+		okButton = new ButtonWrapper();
 		okButton.setFont(new Font("Dialog", Font.BOLD, 40));
+		okButton.setText("OK");
 		panel.add(okButton);
 		
 	}

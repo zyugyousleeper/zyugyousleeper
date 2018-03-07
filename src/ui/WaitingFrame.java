@@ -11,6 +11,7 @@ import javax.swing.UIManager;
 
 public class WaitingFrame extends FrameWrapper {
 	public WaitingFrame() {
+		super();
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().setBackground(Color.DARK_GRAY);
 		

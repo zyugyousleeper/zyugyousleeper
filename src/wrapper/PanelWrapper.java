@@ -6,6 +6,6 @@ import javax.swing.JPanel;
 
 public class PanelWrapper extends JPanel{
 	public PanelWrapper() {
-		setBackground(Color.BLACK);
+		setBackground(Color.decode("#606060"));
 	}
 }

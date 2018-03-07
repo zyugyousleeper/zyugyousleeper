@@ -2,12 +2,13 @@ package ui;
 
 import java.awt.BorderLayout;
 import wrapper.FrameWrapper;
-import javax.swing.JPanel;
+import wrapper.PanelWrapper;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ModeFrame extends FrameWrapper {
-	ArrayList<JPanel> panels = new ArrayList<>();
+	ArrayList<PanelWrapper> panels = new ArrayList<>();
 	int nowPanel = 0;
 	
 	public ModeFrame() {
@@ -16,13 +17,13 @@ public class ModeFrame extends FrameWrapper {
 	}
 	
 	public void refresh() {
-		Iterator<JPanel> i = panels.iterator();
+		Iterator<PanelWrapper> i = panels.iterator();
 		while(i.hasNext()){
-			JPanel bufPanel = i.next();
+			PanelWrapper bufPanel = i.next();
 			bufPanel.setVisible(false);
 		}
 		if(0<=nowPanel && nowPanel<panels.size()) {
-			JPanel bufPanel = panels.get(nowPanel);
+			PanelWrapper bufPanel = panels.get(nowPanel);
 			bufPanel.setVisible(true);
 			getContentPane().add(bufPanel, BorderLayout.CENTER);
 		}
@@ -38,7 +39,7 @@ public class ModeFrame extends FrameWrapper {
 		refresh();
 	}
 	
-	public void addPanel(JPanel panel) {
+	public void addPanel(PanelWrapper panel) {
 		this.panels.add(panel);
 		refresh();
 	}

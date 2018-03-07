@@ -6,6 +6,5 @@ import javax.swing.JFrame;
 
 public class FrameWrapper extends JFrame{
 	public FrameWrapper() {
-		setBackground(Color.BLACK);
 	}
 }

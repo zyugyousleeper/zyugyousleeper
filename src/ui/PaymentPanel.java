@@ -1,81 +1,72 @@
 package ui;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
 
-import javax.print.DocFlavor.INPUT_STREAM;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
 import model.Money;
+import wrapper.LabelWrapper;
 import wrapper.PanelWrapper;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 import java.awt.Color;
 
 public class PaymentPanel extends PanelWrapper{
 	private Money remainingMoney = new Money();
 	
-	private JLabel ableMoneyKinds = new JLabel("無し");
-	private JLabel remainingMoneyLabel = new JLabel("0");
+	private LabelWrapper ableMoneyKinds = new LabelWrapper();
+	private LabelWrapper remainingMoneyLabel = new LabelWrapper();
 	
 	public PaymentPanel() {
 		super();
-		setBackground(Color.DARK_GRAY);
+		ableMoneyKinds.setText("無し");
+		remainingMoneyLabel.setText("0");
+	
 		setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelN = new PanelWrapper();
+		PanelWrapper panelN = new PanelWrapper();
 		this.add(panelN, BorderLayout.NORTH);
 		panelN.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel label1 = new JLabel("入金");
-		label1.setForeground(Color.LIGHT_GRAY);
+		LabelWrapper label1 = new LabelWrapper();
+		label1.setText("入金");
 		panelN.add(label1);
 		label1.setFont(new Font("Dialog", Font.BOLD, 50));
 		
-		JPanel panelC = new PanelWrapper();
+		PanelWrapper panelC = new PanelWrapper();
 		this.add(panelC);
 		panelC.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelSN = new PanelWrapper();
+		PanelWrapper panelSN = new PanelWrapper();
 		panelC.add(panelSN, BorderLayout.NORTH);
 		panelSN.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelSNN = new PanelWrapper();
+		PanelWrapper panelSNN = new PanelWrapper();
 		panelSN.add(panelSNN, BorderLayout.NORTH);
 		
-		JLabel label2 = new JLabel("お金を入れて下さい");
-		label2.setForeground(Color.LIGHT_GRAY);
+		LabelWrapper label2 = new LabelWrapper();
+		label2.setText("お金を入れて下さい");
 		panelSNN.add(label2);
 		label2.setFont(new Font("Dialog", Font.BOLD, 45));
 		
-		JPanel panelSNC = new PanelWrapper();
+		PanelWrapper panelSNC = new PanelWrapper();
 		panelSN.add(panelSNC);
 		
-		JLabel label5 = new JLabel("投入できる貨幣：");
+		LabelWrapper label5 = new LabelWrapper();
+		label5.setText("投入できる貨幣：");
 		label5.setFont(new Font("Dialog", Font.BOLD, 40));
 		ableMoneyKinds.setFont(new Font("Dialog", Font.BOLD, 40));
-		label5.setForeground(Color.LIGHT_GRAY);
-		ableMoneyKinds.setForeground(Color.LIGHT_GRAY);
 		panelSNC.add(label5);		
 		panelSNC.add(ableMoneyKinds);
 		
-		JPanel panelS = new PanelWrapper();
+		PanelWrapper panelS = new PanelWrapper();
 		add(panelS, BorderLayout.SOUTH);
 		panelS.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelSC = new PanelWrapper();
+		PanelWrapper panelSC = new PanelWrapper();
 		panelS.add(panelSC, BorderLayout.CENTER);
 		
-		JLabel label3 = new JLabel("残額：");
+		LabelWrapper label3 = new LabelWrapper();
+		label3.setText("残額：");
 		label3.setFont(new Font("Dialog", Font.BOLD, 40));
 		remainingMoneyLabel.setFont(new Font("Dialog", Font.BOLD, 40));
 		panelSC.add(label3);
@@ -84,9 +75,9 @@ public class PaymentPanel extends PanelWrapper{
 		
 		panelSC.add(remainingMoneyLabel);
 		
-		JLabel lavel5 = new JLabel("円");
+		LabelWrapper lavel5 = new LabelWrapper();
+		label5.setText("円");
 		lavel5.setFont(new Font("Dialog", Font.BOLD, 40));
-		lavel5.setForeground(Color.LIGHT_GRAY);
 		panelSC.add(lavel5);
 	}
 	

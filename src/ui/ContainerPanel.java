@@ -1,6 +1,5 @@
 package ui;
 
-import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 import model.items.Item;
 import wrapper.ButtonWrapper;
@@ -26,9 +25,8 @@ public class ContainerPanel<T extends Item> extends PanelWrapper {
 		Iterator<T> i = modes.iterator();
 		while(i.hasNext()){
 			T bufItem = i.next();
-			JButton bufButton = new ButtonWrapper();
+			ButtonWrapper bufButton = new ButtonWrapper();
 			bufButton.addActionListener(bufItem.getActionListener());
-			bufButton.setFont(new Font("Dialog",Font.BOLD,30));
 			bufButton.setText(bufItem.getText());
 			add(bufButton);
 		}

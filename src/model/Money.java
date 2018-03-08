@@ -15,48 +15,34 @@ public class Money {
 	public static final int FIVETHOUSAND_YEN = 5000;
 	
 	private int money = 0;
-	HashMap<Integer, Integer> moneyKinds = new HashMap<>();
 			
-	public Money() {
-		// TODO Auto-generated constructor stub
+	public Money() {}
+	
+	public Money(int money) {
+		this.money = money;
 	}
 	
 	public void addMoney(int kind,int numberOfCoins) {
-		this.moneyKinds.put(kind, numberOfCoins);
 		this.money += kind*numberOfCoins;
-	}
-	
-	public void addMoneyFromAmount(int kind,int amount) throws Exception {
-		if(amount % kind == 0) {
-			this.moneyKinds.put(kind, amount/kind);
-			this.money += amount;
-		}else {
-			throw new Exception("kingakuto okaneno syuruiga awanai");
-		}
 	}
 	
 	public void plusMoney(Money money) {
 		this.money += money.money;
-		for(Map.Entry<Integer,Integer> map : money.moneyKinds.entrySet()) {
-			Integer buf = this.moneyKinds.get(map.getKey()); 
-			if(buf != null) {
-				this.moneyKinds.put(map.getKey(), map.getValue()+buf);
-			}else {
-				this.moneyKinds.put(map.getKey(), map.getValue());
-			}
+	}
+	
+	public void addMoneyFromAmount(int kind,int amount) throws Exception {
+		if(amount % kind == 0) {
+			this.money += amount;
+		}else {
+			throw new Exception("金額とお金の種類が合わない");
 		}
 	}
 	
 	public int getMoney() {
 		return this.money;
 	}
-	
-	public HashMap<Integer, Integer> getMoneyKinds() {
-		return this.moneyKinds;
-	}
-	
+
 	public void reset() {
 		this.money = 0;
-		this.moneyKinds.clear();
 	}
 }

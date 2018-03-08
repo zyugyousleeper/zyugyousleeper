@@ -1,64 +1,54 @@
 package test;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.Arrays;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import model.Money;
+import model.User;
+import utils.Utils;
 
 public class JSONTest {
-	public static void main(String[] args) {
-		String buildString = "";
-		CloseableHttpClient client = HttpClients.createDefault();
-		HttpGet httpGet = new HttpGet(
-				"http://www.ekidata.jp/api/l/25001.json");
+	public static final int GET = 0;
+	public static final int POST = 1;
+	public static final int PATCH = 2;
+	public static final int DELETE = 3;
+	public static final java.util.List<String> REQUEST = Arrays.asList("GET", "POST", "PATCH", "DELETE");
+	
+	public static void main(String[] args) throws Exception {
+		User user = new User();
+		user.setFelicaID("SYARO");
+		user.setName("シャロ");
+		user.setStudentNum(16009);
+		user.setMoney(new Money(0));
 		
-		try {
-			StringBuilder builder = new StringBuilder();
-			HttpResponse response = client.execute(httpGet);
-			int statusCode = response.getStatusLine().getStatusCode();
-			if (statusCode == 200) {
-				HttpEntity entity = response.getEntity();
-				InputStream content = entity.getContent();
-				BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-				String line;
-				while ((line = reader.readLine()) != null) {
-					builder.append(line);
-				}
-			} else {
-				System.out.println("Failed to download file");
-			}
-			buildString = builder.toString();
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		printLog(user, DELETE);
+		printLog(user, POST);
+		printLog(user, GET);
+		user.getMoney().addMoney(Money.HUNDRED_YEN, 100);
+		printLog(user, PATCH);
+		printLog(user, GET);
+		//printLog(user, DELETE);
+	}
+	public static void printUser(User user) {
+		System.out.println("{名前：" + user.getName() + ", 学籍番号：" + user.getStudentNum() + ", フェリカID：" + user.getFelicaID() + ", 所持金：" + user.getMoney().getMoney() + "}");
+	}
+	public static User goRequest(User user, int mode) throws Exception {
+		User reUser = new User();
+		
+		if(mode == GET) reUser = Utils.getUser(user.getStudentNum());
+		else if(mode == POST) reUser = Utils.postUser(user);
+		else if (mode == PATCH) reUser = Utils.patchUser(user);
+		else if (mode == DELETE) {
+			Utils.deleteUser(user.getStudentNum());
+			reUser = user;
 		}
 		
-		int cutStart = buildString.indexOf("[");
-		int cutEnd = buildString.lastIndexOf("]");
-		buildString = buildString.substring(cutStart , cutEnd+1);
-		
-		try {
-			JSONArray jsonArray = new JSONArray(buildString);
-			System.out.println("Number of entries " + jsonArray.length());
-			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject jsonObject = jsonArray.getJSONObject(i);
-				String buf = "駅名:" + jsonObject.getString("station_name") + "\n" +
-						"緯度" + jsonObject.getString("lat") + "\n" +
-						"経度" + jsonObject.getString("lon");
-				System.out.println(buf);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		return reUser;
+	}
+	public static User printLog(User user, int mode) throws Exception {
+		System.out.println(REQUEST.get(mode) + "：");
+		User reUser = goRequest(user, mode);
+		printUser(reUser);
+		System.out.println("");
+		return reUser;
 	}
 }

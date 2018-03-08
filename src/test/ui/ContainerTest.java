@@ -1,21 +1,29 @@
 package test.ui;
 
+import model.User;
+import model.items.ChargeMode;
 import model.items.Item;
-import ui.Container;
+import model.items.PurchaseMode;
+import ui.ContainerPanel;
+import utils.Utils;
+import wrapper.FrameWrapper;
 
 public class ContainerTest {
 	public static void main(String[] args) {
-		Container<Item> frame = new Container<>();
+		FrameWrapper frameWrapper = new FrameWrapper();
+		ContainerPanel<Item> frame = new ContainerPanel<>();
+		User user = null;
+		try {
+			user = Utils.getUser(16001);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		Item mode = new Item();
-		mode.setText("hello");
-
-		frame.addItem(mode);
-		frame.addItem(mode);
-		frame.addItem(mode);
-		frame.addItem(mode);
-		frame.addItem(mode);
+		frame.addItem(new ChargeMode(user));
+		frame.addItem(new PurchaseMode(user));
 		
-		frame.setVisible(true);
+		frameWrapper.add(frame);
+		frameWrapper.setVisible(true);
 	}
 }

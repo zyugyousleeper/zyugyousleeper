@@ -10,6 +10,6 @@ public class MoneyTest {
 		money.addMoney(Money.FIVEHUNDRED_YEN, 1);
 		money2.addMoney(Money.HUNDRED_YEN, 8);
 		money.plusMoney(money2);
-		System.out.println(money.getMoneyKinds().get(Money.HUNDRED_YEN));
+		System.out.println(money.getMoney());
 	}
 }

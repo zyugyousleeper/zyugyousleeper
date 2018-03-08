@@ -1,7 +1,5 @@
 package test;
 
-import java.util.ArrayList;
-
 import model.NFCThread;
 import model.NFCThread.NFCTouchListener;
 import model.User;
@@ -34,20 +32,12 @@ public class FullTest {
 		
 		@Override
 		public void onConnect(String id) {
-			System.out.println(id);
 			User user = null;
 			try {
-				ArrayList<User> users = Utils.getUsers();
-				for(User u : users) {
-					System.out.println(u.getFelicaID());
-					if(u.getFelicaID().equals(id)) user = u;
-				}
+				user = Utils.getUserFromFerica(id);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-			if(user==null) {
-				user=new User();
-				System.out.println("userがない");
+				return;
 			}
 			
 			waitingFrame.setVisible(false);

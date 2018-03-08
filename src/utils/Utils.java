@@ -36,7 +36,6 @@ public class Utils {
 		HttpResponse response = client.execute(reqest);
 		
 		int statusCode = response.getStatusLine().getStatusCode();
-		System.out.println(statusCode);
 		if (statusCode %100 ==2) throw new Exception();
 		
 		return response;
@@ -95,9 +94,20 @@ public class Utils {
 		
 		HttpResponse response = HTTPExecute(get);
 		String jsonString = getReturnedJsonString(response);
-		System.out.println(jsonString);
 		
 		return getUserFromJsonString(jsonString);
+	}
+	
+	public static User getUserFromFerica(String felicaID) throws Exception {
+		User user = null;
+		ArrayList<User> users = Utils.getUsers();
+	
+		for(User u : users) {
+			if(u.getFelicaID().equals(felicaID)) user = u;
+		}
+		
+		if(user==null) throw new Exception("そんなUSERは存在しない");
+		return user;
 	}
 	
 	public static ArrayList<User> getUsers() throws Exception {
@@ -105,7 +115,6 @@ public class Utils {
 		
 		HttpResponse response = HTTPExecute(get);
 		String jsonString = getReturnedJsonString(response);
-		System.out.println(jsonString);
 		
 		return getUsersFromJsonString(jsonString);
 	}
@@ -126,7 +135,6 @@ public class Utils {
 		
        HttpResponse response = HTTPExecute(patch);
 		String jsonString = getReturnedJsonString(response);
-		System.out.println(jsonString);
 		
 		return getUserFromJsonString(jsonString);
 	}
@@ -139,7 +147,6 @@ public class Utils {
 		
        HttpResponse response = HTTPExecute(post);
 		String jsonString = getReturnedJsonString(response);
-		System.out.println(jsonString);
 		
 		return getUserFromJsonString(jsonString);
 	}

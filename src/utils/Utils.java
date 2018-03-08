@@ -81,7 +81,7 @@ public class Utils {
 				"{\"name\":\""+user.getName()+"\",\"user_id\":"+String.valueOf(user.getStudentNum())+",\"felica_id\":\""+user.getFelicaID()+"\",\"money\":"+String.valueOf(user.getMoney().getMoney())+"}";
         
 		patch.setHeader("Content-type", "application/json; charset=UTF-8");
-       patch.setEntity(new StringEntity(entity,"UTF-8"));
+		patch.setEntity(new StringEntity(entity,"UTF-8"));
 		
 		return HTTPExcute(patch);
 	}
@@ -92,7 +92,7 @@ public class Utils {
 				"{\"name\":\""+newUser.getName()+"\",\"user_id\":"+String.valueOf(newUser.getStudentNum())+",\"felica_id\":\""+newUser.getFelicaID()+"\",\"money\":"+String.valueOf(newUser.getMoney().getMoney())+"}";
         
 		post.setHeader("Content-type", "application/json; charset=UTF-8");
-       post.setEntity(new StringEntity(entity,"UTF-8"));
+		post.setEntity(new StringEntity(entity,"UTF-8"));
 		
 		return HTTPExcute(post);
 	}

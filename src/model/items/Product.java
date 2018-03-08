@@ -4,8 +4,8 @@ import java.awt.event.ActionListener;
 
 public class Product implements Item {
 	
-	private String name = "";
-	private int price = 0;
+	private String name;
+	private int price;
 	private ActionListener listener;
 	
 	public void setText(String name) {

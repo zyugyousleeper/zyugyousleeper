@@ -17,11 +17,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.BoxLayout;
 
 public class ConfirmationPanel extends PanelWrapper {
-	private User user;
 	private Product product;
 	
-	private ButtonWrapper okButton;
-	private ButtonWrapper cancelButton;
+	private ButtonWrapper okButton = new ButtonWrapper();
+	private ButtonWrapper cancelButton = new ButtonWrapper();
 	private LabelWrapper praceLabel = new LabelWrapper();
 	private LabelWrapper nameLabel = new LabelWrapper();
 	
@@ -39,25 +38,10 @@ public class ConfirmationPanel extends PanelWrapper {
 		
 		PanelWrapper buttonPanel = new PanelWrapper();
 		buttonPanel.setLayout(new GridLayout(1,2));
-				
-		okButton = new ButtonWrapper();
+		
 		okButton.setText("OK");
-		okButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Money newMoney = new Money(user.getMoney().getMoney()-product.getPrice());
-				user.setMoney(newMoney);
-				try {
-					Utils.patchUser(user);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
 		buttonPanel.add(okButton);
 		
-		cancelButton = new ButtonWrapper();
 		cancelButton.setText("Cancel");
 		buttonPanel.add(cancelButton);
 		
@@ -74,14 +58,13 @@ public class ConfirmationPanel extends PanelWrapper {
 		okButton.addActionListener(listener);
 	}
 	
+	public Product getProduct() {
+		return this.product;
+	}
+	
 	public void setProduct(Product product) {
 		this.product = product;
 		nameLabel.setText("商品名 : "+product.getText());
 		praceLabel.setText("価格 : "+String.valueOf(product.getPrice()));
 	}
-	
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 }

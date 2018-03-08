@@ -3,59 +3,60 @@ package model.items;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.Money;
 import model.User;
 import ui.ConfirmationPanel;
 import ui.ContainerPanel;
 import ui.ModeFrame;
+import utils.Products;
+import utils.Utils;
 
 public class PurchaseMode extends ModeFrame implements Item{
 	private User user;
 	
 	private ContainerPanel<Product> panel = new ContainerPanel<>();
 	private ConfirmationPanel panel2 = new ConfirmationPanel();
-	Product chocolate = new Product();
-	Product coffee = new Product();
-	Product cocoa = new Product();
 	
-	public PurchaseMode(User user) {
+	public PurchaseMode(User user_) {
 		super();
-		this.user = user;
-		chocolate.setText("ちょこれーと");
-		chocolate.setPrice(100);
-		chocolate.setlistener(new ActionListener() {
+		this.user = user_;
+		
+		//商品一覧を作成
+		for(Product p : Products.products()) {
+			p.setlistener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					panel2.setProduct(p);
+					next();
+				}
+			});
+			panel.addItem(p);
+		}
+		
+		//okbuttonの処理
+		panel2.setOKListener((new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel2.setProduct(chocolate);
-				next();				
+				Money newMoney = new Money(user.getMoney().getMoney()-panel2.getProduct().getPrice());
+				user.setMoney(newMoney);
+				try {
+					Utils.patchUser(user);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}));
+		//cancelbttonの処理
+		panel2.setCancelListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				back();
+				setVisible(false);
 			}
 		});
 
-		coffee.setText("こーひー");
-		coffee.setPrice(10);
-		coffee.setlistener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panel2.setProduct(coffee);
-				next();				
-			}
-		});
-
-		cocoa.setText("ここあ");
-		cocoa.setPrice(1000);
-		cocoa.setlistener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panel2.setProduct(cocoa);
-				next();
-			}
-		});
-		
-		panel.addItem(chocolate);
-		panel.addItem(coffee);
-		panel.addItem(cocoa);
-		
 		addPanel(panel);
-		panel2.setUser(user);
 		addPanel(panel2);
 	}
 

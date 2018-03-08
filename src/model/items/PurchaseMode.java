@@ -7,6 +7,7 @@ import model.Money;
 import model.User;
 import ui.ConfirmationPanel;
 import ui.ContainerPanel;
+import ui.EndingPanel;
 import ui.ModeFrame;
 import utils.Products;
 import utils.Utils;
@@ -16,6 +17,7 @@ public class PurchaseMode extends ModeFrame implements Item{
 	
 	private ContainerPanel<Product> panel = new ContainerPanel<>();
 	private ConfirmationPanel panel2 = new ConfirmationPanel();
+	private EndingPanel panel3 = new EndingPanel();
 	
 	public PurchaseMode(User user_) {
 		super();
@@ -47,6 +49,7 @@ public class PurchaseMode extends ModeFrame implements Item{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				next();
 			}
 		}));
 		//cancelbttonの処理
@@ -60,6 +63,7 @@ public class PurchaseMode extends ModeFrame implements Item{
 
 		addPanel(panel);
 		addPanel(panel2);
+		addPanel(panel3);
 	}
 
 	

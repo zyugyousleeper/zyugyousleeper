@@ -1,27 +1,37 @@
 package model.items;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Product implements Item {
+	
+	private String name = "";
+	private int price = 0;
+	private ActionListener listener;
+	
+	public void setText(String name) {
+		this.name = name;
+	}
+	
+	public void setlistener(ActionListener listener) {
+		this.listener = listener;
+	}
 
 	@Override
 	public String getText() {
-		// TODO Auto-generated method stub
-		return "商品";
+		return name;
 	}
 
 	@Override
 	public ActionListener getActionListener() {
-		// TODO Auto-generated method stub
-		return new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		};
+		return listener;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 }

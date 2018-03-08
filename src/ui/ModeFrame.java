@@ -1,87 +1,32 @@
 package ui;
 
-import javax.swing.JFrame;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
 import wrapper.FrameWrapper;
+import wrapper.PanelWrapper;
 
-import javax.swing.JPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import java.awt.Font;
-import java.awt.Color;
-
 public class ModeFrame extends FrameWrapper {
-	JLabel fractionLabel;
-	ArrayList<JPanel> panels = new ArrayList<>();
+	ArrayList<PanelWrapper> panels = new ArrayList<>();
 	int nowPanel = 0;
 	
 	public ModeFrame() {
-		setBackground(Color.DARK_GRAY);
-		getContentPane().setBackground(Color.DARK_GRAY);
-		getContentPane().setLayout(new BorderLayout(0, 0));
-		
-		fractionLabel = new JLabel("New label");
-		fractionLabel.setFont(new Font("DejaVu Sans", Font.BOLD, 12));
-		getContentPane().add(fractionLabel, BorderLayout.SOUTH);
-		fractionLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBackground(Color.WHITE);
-		getContentPane().add(buttonPanel, BorderLayout.NORTH);
-		buttonPanel.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		JButton backButton = new JButton("back");
-		backButton.setFont(new Font("DejaVu Sans", Font.BOLD, 12));
-		backButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				back();
-			}
-		});
-		buttonPanel.add(backButton);
-				
-		JButton nextButton = new JButton("next");
-		nextButton.setFont(new Font("DejaVu Sans", Font.BOLD, 12));
-		nextButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				next();
-			}
-		});
-		buttonPanel.add(nextButton);
-
-		JButton cancelButton = new JButton("cancel");
-		cancelButton.setFont(new Font("DejaVu Sans", Font.BOLD, 12));
-		buttonPanel.add(cancelButton);
-		
+		super();
 		refresh();
 	}
 	
 	public void refresh() {
-		Iterator<JPanel> i = panels.iterator();
+		Iterator<PanelWrapper> i = panels.iterator();
 		while(i.hasNext()){
-			JPanel bufPanel = i.next();
+			PanelWrapper bufPanel = i.next();
 			bufPanel.setVisible(false);
 		}
 		if(0<=nowPanel && nowPanel<panels.size()) {
-			JPanel bufPanel = panels.get(nowPanel);
+			PanelWrapper bufPanel = panels.get(nowPanel);
 			bufPanel.setVisible(true);
 			getContentPane().add(bufPanel, BorderLayout.CENTER);
 		}
-		
-		fractionLabel.setText(String.valueOf(nowPanel+1) + "/" + String.valueOf(panels.size()));
 	}
 	
 	public void next() {
@@ -94,7 +39,7 @@ public class ModeFrame extends FrameWrapper {
 		refresh();
 	}
 	
-	public void addPanel(JPanel panel) {
+	public void addPanel(PanelWrapper panel) {
 		this.panels.add(panel);
 		refresh();
 	}

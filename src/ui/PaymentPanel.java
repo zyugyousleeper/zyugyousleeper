@@ -1,107 +1,84 @@
 package ui;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
 
-import javax.print.DocFlavor.INPUT_STREAM;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
 import model.Money;
+import wrapper.LabelWrapper;
 import wrapper.PanelWrapper;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 import java.awt.Color;
 
 public class PaymentPanel extends PanelWrapper{
 	private Money remainingMoney = new Money();
-	private Money necessaryMoney = new Money();
 	
-	private JLabel ableMoneyKinds = new JLabel("無し");
-	private JLabel remainingMoneyLabel = new JLabel("0");
-	private JLabel label4 = new JLabel("必要額：");
-	private JLabel necessaryMoneyLabel = new JLabel("0");
-	private JLabel label6 = new JLabel("円");
+	private LabelWrapper ableMoneyKinds = new LabelWrapper();
+	private LabelWrapper remainingMoneyLabel = new LabelWrapper();
 	
 	public PaymentPanel() {
-		setBackground(Color.DARK_GRAY);
+		super();
+		ableMoneyKinds.setText("無し");
+		remainingMoneyLabel.setText("0");
+	
 		setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelN = new JPanel();
+		PanelWrapper panelN = new PanelWrapper();
 		this.add(panelN, BorderLayout.NORTH);
 		panelN.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel label1 = new JLabel("入金");
-		label1.setForeground(Color.LIGHT_GRAY);
+		LabelWrapper label1 = new LabelWrapper();
+		label1.setText("入金");
 		panelN.add(label1);
-		label1.setFont(new Font("Dialog", Font.BOLD, 30));
+		label1.setFont(new Font("Dialog", Font.BOLD, 50));
 		
-		JPanel panelC = new JPanel();
+		PanelWrapper panelC = new PanelWrapper();
 		this.add(panelC);
 		panelC.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelSN = new JPanel();
+		PanelWrapper panelSN = new PanelWrapper();
 		panelC.add(panelSN, BorderLayout.NORTH);
 		panelSN.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelSNN = new JPanel();
+		PanelWrapper panelSNN = new PanelWrapper();
 		panelSN.add(panelSNN, BorderLayout.NORTH);
 		
-		JLabel label2 = new JLabel("お金を入れて下さい");
-		label2.setForeground(Color.LIGHT_GRAY);
+		LabelWrapper label2 = new LabelWrapper();
+		label2.setText("お金を入れて下さい");
 		panelSNN.add(label2);
-		label2.setFont(new Font("Dialog", Font.BOLD, 15));
+		label2.setFont(new Font("Dialog", Font.BOLD, 45));
 		
-		JPanel panelSNC = new JPanel();
+		PanelWrapper panelSNC = new PanelWrapper();
 		panelSN.add(panelSNC);
 		
-		JLabel label5 = new JLabel("投入できる貨幣：");
-		label5.setForeground(Color.LIGHT_GRAY);
-		panelSNC.add(label5);
-		ableMoneyKinds.setForeground(Color.LIGHT_GRAY);
-		
+		LabelWrapper label5 = new LabelWrapper();
+		label5.setText("投入できる貨幣：");
+		label5.setFont(new Font("Dialog", Font.BOLD, 40));
+		ableMoneyKinds.setFont(new Font("Dialog", Font.BOLD, 40));
+		panelSNC.add(label5);		
 		panelSNC.add(ableMoneyKinds);
 		
-		JPanel panelS = new JPanel();
+		PanelWrapper panelS = new PanelWrapper();
 		add(panelS, BorderLayout.SOUTH);
 		panelS.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelSC = new JPanel();
+		PanelWrapper panelSC = new PanelWrapper();
 		panelS.add(panelSC, BorderLayout.CENTER);
 		
-		JLabel label3 = new JLabel("残額：");
-		label3.setForeground(Color.LIGHT_GRAY);
+		LabelWrapper label3 = new LabelWrapper();
+		label3.setText("残額：");
+		label3.setFont(new Font("Dialog", Font.BOLD, 40));
+		remainingMoneyLabel.setFont(new Font("Dialog", Font.BOLD, 40));
 		panelSC.add(label3);
 		remainingMoneyLabel.setForeground(Color.LIGHT_GRAY);
+		label3.setForeground(Color.LIGHT_GRAY);
 		
 		panelSC.add(remainingMoneyLabel);
 		
-		JLabel lavel5 = new JLabel("円");
-		lavel5.setForeground(Color.LIGHT_GRAY);
+		LabelWrapper lavel5 = new LabelWrapper();
+		label5.setText("円");
+		lavel5.setFont(new Font("Dialog", Font.BOLD, 40));
 		panelSC.add(lavel5);
-		
-		JPanel panel = new JPanel();
-		panelS.add(panel, BorderLayout.SOUTH);
-		label4.setForeground(Color.LIGHT_GRAY);
-		
-		label4.setEnabled(false);
-		panel.add(label4);
-		necessaryMoneyLabel.setForeground(Color.LIGHT_GRAY);
-		
-		necessaryMoneyLabel.setEnabled(false);
-		panel.add(necessaryMoneyLabel);
-		label6.setForeground(Color.LIGHT_GRAY);
-		
-		label6.setEnabled(false);
-		panel.add(label6);
 	}
 	
 	public void setMoneyKinds(int... moneyKinds) {
@@ -111,18 +88,7 @@ public class PaymentPanel extends PanelWrapper{
 		}
 		ableMoneyKinds.setText(string.substring(0, string.length() - 1));
 	}
-	
-	public void setNecessaryMoney(Money necessaryMoney_in) {
 		
-		label4.setEnabled(true);
-		
-		necessaryMoney = necessaryMoney_in;
-		necessaryMoneyLabel.setText(String.valueOf(necessaryMoney.getMoney()));
-		necessaryMoneyLabel.setEnabled(true);
-		
-		label6.setEnabled(true);
-	}
-	
 	public void update(Money remainingMoney_in) {
 		remainingMoney = remainingMoney_in;
 		remainingMoneyLabel.setText(String.valueOf(remainingMoney.getMoney()));

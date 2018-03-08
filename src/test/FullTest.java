@@ -2,11 +2,13 @@ package test;
 
 import model.NFCThread;
 import model.NFCThread.NFCTouchListener;
+import model.User;
 import model.items.ChargeMode;
 import model.items.Item;
 import model.items.PurchaseMode;
 import ui.ContainerPanel;
 import ui.WaitingFrame;
+import utils.Utils;
 import wrapper.FrameWrapper;
 
 public class FullTest {
@@ -30,14 +32,17 @@ public class FullTest {
 		
 		@Override
 		public void onConnect(String id) {
+			User user = new User();
+			user.setFelicaID(id);
+			
 			waitingFrame.setVisible(false);
 			
 			frame = new FrameWrapper();
 			panel = new ContainerPanel<>();
 			frame.add(panel);
 			
-			chargeMode = new ChargeMode();
-			purchaseMode = new PurchaseMode();
+			chargeMode = new ChargeMode(user);
+			purchaseMode = new PurchaseMode(user);
 			panel.addItem(chargeMode);
 			panel.addItem(purchaseMode);
 		}

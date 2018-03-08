@@ -3,12 +3,16 @@ package model.items;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.User;
 import ui.ModeFrame;
 import ui.PaymentPanel;
 
 public class ChargeMode extends ModeFrame implements Item {
-	public ChargeMode() {
+	private User user;
+	
+	public ChargeMode(User user) {
 		super();
+		this.user = user;
 		addPanel(new PaymentPanel());
 	}
 

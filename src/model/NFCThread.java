@@ -27,7 +27,11 @@ public class NFCThread extends Thread{
 				while ((buf = br.readLine()) != null) {
 					builder.append(buf + "\n");
 				}
-				callListener(builder.toString());
+				String buf2 = builder.toString();
+				int end = buf2.length()-2;
+				end = end< 0 ? 0 : end;
+				buf2 = buf2.substring(0, end);
+				callListener(buf2);
 				
 				Thread.sleep(500);
 			}

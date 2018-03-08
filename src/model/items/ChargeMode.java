@@ -23,6 +23,8 @@ public class ChargeMode extends ModeFrame implements Item ,SerialDataEventListen
 	public ChargeMode(User user) {
 		super();
 		this.user = user;
+		money = new Money(user.getMoney().getMoney());
+		panel.update(money);
 		panel.setMoneyKinds(Money.FIVEHUNDRED_YEN,Money.HUNDRED_YEN,Money.FIFTY_YEN,Money.TEN_YEN);
 		addPanel(panel);
 		

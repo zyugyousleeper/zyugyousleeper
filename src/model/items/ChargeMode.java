@@ -30,7 +30,7 @@ public class ChargeMode extends ModeFrame implements Item ,SerialDataEventListen
 		coinThread.start();
 	}
 	
-	public void finel() {
+	public void finush() {
 		user.setMoney(money);
 		try {
 			Utils.patchUser(user);

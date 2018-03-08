@@ -92,7 +92,6 @@ public class Utils {
 	public static User getUser(int userID) throws Exception {
 		final String url = baseUrl + String.valueOf(userID) + "/";
 		HttpGet get = new HttpGet(url);
-//		get.setHeader("Authorization", "Basic " + "cm9vdDptb2tlbW9rZW1va2Vtb2tl");
 		
 		HttpResponse response = HTTPExecute(get);
 		String jsonString = getReturnedJsonString(response);
@@ -101,9 +100,8 @@ public class Utils {
 		return getUserFromJsonString(jsonString);
 	}
 	
-	public static ArrayList<User> getUsers(int userID) throws Exception {
-		final String url = baseUrl + String.valueOf(userID) + "/";
-		HttpGet get = new HttpGet(url);
+	public static ArrayList<User> getUsers() throws Exception {
+		HttpGet get = new HttpGet(baseUrl);
 		
 		HttpResponse response = HTTPExecute(get);
 		String jsonString = getReturnedJsonString(response);

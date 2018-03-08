@@ -1,5 +1,7 @@
 package test;
 
+import java.util.ArrayList;
+
 import model.NFCThread;
 import model.NFCThread.NFCTouchListener;
 import model.User;
@@ -32,8 +34,21 @@ public class FullTest {
 		
 		@Override
 		public void onConnect(String id) {
-			User user = new User();
-			user.setFelicaID(id);
+			System.out.println(id);
+			User user = null;
+			try {
+				ArrayList<User> users = Utils.getUsers();
+				for(User u : users) {
+					System.out.println(u.getFelicaID());
+					if(u.getFelicaID().equals(id)) user = u;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if(user==null) {
+				user=new User();
+				System.out.println("userがない");
+			}
 			
 			waitingFrame.setVisible(false);
 			
@@ -45,6 +60,8 @@ public class FullTest {
 			purchaseMode = new PurchaseMode(user);
 			panel.addItem(chargeMode);
 			panel.addItem(purchaseMode);
+			
+			frame.setVisible(true);
 		}
 		
 		@Override
@@ -52,6 +69,7 @@ public class FullTest {
 			waitingFrame.setVisible(true);
 			
 			frame.setVisible(false);
+			chargeMode.finush();
 			chargeMode.setVisible(false);
 			purchaseMode.setVisible(false);
 		}

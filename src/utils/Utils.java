@@ -1,15 +1,13 @@
 package utils;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPatch;
@@ -18,82 +16,133 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mysql.jdbc.Buffer;
 
 import model.Money;
 import model.User;
 
 public class Utils {
 	
-	private static User HTTPExcute(HttpRequestBase reqest) throws Exception{
+	public static final String baseUrl = "http://192.168.1.219/api/users/";
+	
+	public static HttpResponse HTTPExecute(HttpRequestBase reqest) throws Exception{
+//		reqest.addHeader("Authorization", "Basic " + Base64.encodeBase64String("root:mokemokemokemoke".getBytes()));
+//		reqest.setHeader("Authorization", "Basic " + "cm9vdDptb2tlbW9rZW1va2Vtb2tl");
 		
 		CloseableHttpClient client = HttpClients.createDefault();
-		StringBuilder builder = new StringBuilder();
 		HttpResponse response = client.execute(reqest);
 		
 		int statusCode = response.getStatusLine().getStatusCode();
 		System.out.println(statusCode);
 		if (statusCode %100 ==2) throw new Exception();
 		
+		return response;
+	}
+	
+	public static String getReturnedJsonString(HttpResponse response) throws UnsupportedOperationException, IOException {
 		HttpEntity entity = response.getEntity();
-		if (entity == null) return new User();
-		
 		InputStream content = entity.getContent();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+		
 		String line;
+		StringBuilder builder = new StringBuilder();
 		while ((line = reader.readLine()) != null) {
 			builder.append(line);
 		}
-		
-		JSONObject jsonObject = new JSONObject(builder.toString());
+			
+		return builder.toString();
+	}
+	
+	public static User getUserFromJsonString(String jsonString) throws JSONException {
+		JSONObject jsonObject = new JSONObject(jsonString);
 		
 		User user = new User();
 		user.setStudentNum(jsonObject.getInt("user_id"));
 		user.setName(jsonObject.getString("name"));
 		user.setFelicaID(jsonObject.getString("felica_id"));
 		user.setMoney(new Money(jsonObject.getInt("money")));
-			
-		return user;
 		
+		return user;
 	}
 	
+	public static ArrayList<User> getUsersFromJsonString(String jsonString) throws JSONException {
+		JSONArray jsonArray = new JSONArray(jsonString);
+		
+		ArrayList<User> users = new ArrayList<User>();
+		for (int i = 0; i < jsonArray.length(); i++) {
+			users.add(getUserFromJsonString(jsonArray.getJSONObject(i).toString()));
+		}
+		
+		return users;
+	}
+	
+	public static String generateEntity(User user) {
+		String entity = "{"
+				+ "\"name\":\"" + user.getName() + "\","
+				+ "\"user_id\":" + String.valueOf(user.getStudentNum()) + ","
+				+ "\"felica_id\":\"" + user.getFelicaID() + "\","
+				+ "\"money\":"+String.valueOf(user.getMoney().getMoney())
+				+ "}";
+		return entity;
+	}
+
 	public static User getUser(int userID) throws Exception {
-		final String url = "http://192.168.1.219/api/users/" + String.valueOf(userID) + "/";
+		final String url = baseUrl + String.valueOf(userID) + "/";
 		HttpGet get = new HttpGet(url);
-		return HTTPExcute(get);
+//		get.setHeader("Authorization", "Basic " + "cm9vdDptb2tlbW9rZW1va2Vtb2tl");
+		
+		HttpResponse response = HTTPExecute(get);
+		String jsonString = getReturnedJsonString(response);
+		System.out.println(jsonString);
+		
+		return getUserFromJsonString(jsonString);
+	}
+	
+	public static ArrayList<User> getUsers(int userID) throws Exception {
+		final String url = baseUrl + String.valueOf(userID) + "/";
+		HttpGet get = new HttpGet(url);
+		
+		HttpResponse response = HTTPExecute(get);
+		String jsonString = getReturnedJsonString(response);
+		System.out.println(jsonString);
+		
+		return getUsersFromJsonString(jsonString);
 	}
 	
 	public static void deleteUser(int userID) throws Exception {
-		final String url = "http://192.168.1.219/api/users/" + String.valueOf(userID) + "/";
+		final String url = baseUrl + String.valueOf(userID) + "/";
 		HttpDelete delete = new HttpDelete(url);
-		HTTPExcute(delete);	
+		
+		HTTPExecute(delete);	
 	}
 	
 	public static User patchUser(User user) throws Exception {
-		final String url = "http://192.168.1.219/api/users/" + String.valueOf(user.getStudentNum()) + "/";
+		final String url = baseUrl + String.valueOf(user.getStudentNum()) + "/";
 		HttpPatch patch = new HttpPatch(url);
-		
-		String entity = 
-				"{\"name\":\""+user.getName()+"\",\"user_id\":"+String.valueOf(user.getStudentNum())+",\"felica_id\":\""+user.getFelicaID()+"\",\"money\":"+String.valueOf(user.getMoney().getMoney())+"}";
         
 		patch.setHeader("Content-type", "application/json; charset=UTF-8");
-		patch.setEntity(new StringEntity(entity,"UTF-8"));
+       patch.setEntity(new StringEntity(generateEntity(user), "UTF-8"));
 		
-		return HTTPExcute(patch);
+       HttpResponse response = HTTPExecute(patch);
+		String jsonString = getReturnedJsonString(response);
+		System.out.println(jsonString);
+		
+		return getUserFromJsonString(jsonString);
 	}
 	
 	public static User postUser(User newUser) throws Exception{
-		HttpPost post = new HttpPost("http://192.168.1.219/api/users/");
-		String entity = 
-				"{\"name\":\""+newUser.getName()+"\",\"user_id\":"+String.valueOf(newUser.getStudentNum())+",\"felica_id\":\""+newUser.getFelicaID()+"\",\"money\":"+String.valueOf(newUser.getMoney().getMoney())+"}";
+		HttpPost post = new HttpPost(baseUrl);
         
 		post.setHeader("Content-type", "application/json; charset=UTF-8");
-		post.setEntity(new StringEntity(entity,"UTF-8"));
+       post.setEntity(new StringEntity(generateEntity(newUser), "UTF-8"));
 		
-		return HTTPExcute(post);
+       HttpResponse response = HTTPExecute(post);
+		String jsonString = getReturnedJsonString(response);
+		System.out.println(jsonString);
+		
+		return getUserFromJsonString(jsonString);
 	}
 }

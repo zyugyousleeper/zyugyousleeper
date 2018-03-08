@@ -61,6 +61,7 @@ public class ChargeMode extends ModeFrame implements Item ,SerialDataEventListen
 		try {
 			int kind = Integer.valueOf(arg0.getAsciiString());
 			money.addMoney(kind, 1);
+			panel.update(money);
 		} catch (NumberFormatException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

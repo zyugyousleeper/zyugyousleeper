@@ -58,10 +58,10 @@ public class FullTest {
 		public void onRelease(String id) {
 			waitingFrame.setVisible(true);
 			
-			frame.setVisible(false);
-			chargeMode.finush();
-			chargeMode.setVisible(false);
-			purchaseMode.setVisible(false);
+			if(frame != null) frame.setVisible(false);
+			if(chargeMode != null) chargeMode.finush();
+			if(chargeMode != null) chargeMode.setVisible(false);
+			if(purchaseMode != null) purchaseMode.setVisible(false);
 		}
 	};
 }

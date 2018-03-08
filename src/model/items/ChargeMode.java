@@ -16,15 +16,13 @@ import utils.Utils;
 
 public class ChargeMode extends ModeFrame implements Item ,SerialDataEventListener {
 	private User user;
-	private Money money = new Money();
 	private PaymentPanel panel = new PaymentPanel();
 	private CoinThread coinThread = new CoinThread();
 	
-	public ChargeMode(User user) {
+	public ChargeMode(User user_) {
 		super();
-		this.user = user;
-		money = new Money(user.getMoney().getMoney());
-		panel.update(money);
+		this.user = user_;
+		panel.update(user.getMoney());
 		panel.setMoneyKinds(Money.FIVEHUNDRED_YEN,Money.HUNDRED_YEN,Money.FIFTY_YEN,Money.TEN_YEN);
 		addPanel(panel);
 		
@@ -33,13 +31,6 @@ public class ChargeMode extends ModeFrame implements Item ,SerialDataEventListen
 	}
 	
 	public void finush() {
-		user.setMoney(money);
-		try {
-			Utils.patchUser(user);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		coinThread.close();
 	}
 
@@ -62,9 +53,12 @@ public class ChargeMode extends ModeFrame implements Item ,SerialDataEventListen
 	public void dataReceived(SerialDataEvent arg0) {
 		try {
 			int kind = Integer.valueOf(arg0.getAsciiString());
-			money.addMoney(kind, 1);
-			panel.update(money);
+			user.getMoney().addMoney(kind, 1);
+			panel.update(user.getMoney());
+			Utils.patchUser(user);
 		} catch (NumberFormatException | IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

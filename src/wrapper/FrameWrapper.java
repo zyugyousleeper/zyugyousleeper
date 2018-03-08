@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 public class FrameWrapper extends JFrame{
 	public FrameWrapper() {
-		setBackground(Color.decode("#606060"));
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setBackground(Color.decode("#303030"));
 	}
 }

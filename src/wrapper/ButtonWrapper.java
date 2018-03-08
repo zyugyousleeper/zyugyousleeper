@@ -7,9 +7,9 @@ import javax.swing.border.LineBorder;
 
 public class ButtonWrapper extends JButton{
 	public ButtonWrapper() {
-		setForeground(Color.LIGHT_GRAY);
+		setForeground(Color.GRAY);
 		setFont(new Font("Dialog",Font.BOLD,50));
-		setBackground(Color.GRAY);
-		setBorder(new LineBorder(Color.decode("#606060"),3,true));
+		setBackground(Color.decode("#393939"));
+		setBorder(new LineBorder(Color.decode("#303030"),3,true));
 	}
 }

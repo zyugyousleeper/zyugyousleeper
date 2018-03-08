@@ -26,7 +26,9 @@ public class PurchaseMode extends ModeFrame implements Item{
 			p.setlistener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					panel2.setUser(user);
 					panel2.setProduct(p);
+					panel2.setupUI();
 					next();
 				}
 			});
